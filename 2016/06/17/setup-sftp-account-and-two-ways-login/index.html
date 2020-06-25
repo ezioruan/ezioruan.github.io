@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>解决xcode升级vim插件无法使用问题 | Life is Strange</title>
+    <title>setup sftp account and two differences authentication logins | Life is Strange</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Ezio Ruan">
     
 
     
-    <meta name="description" content="xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了这个确实坑爹 都没有做自动适配的 一行代码搞定 1find ~&#x2F;Library&#x2F;Application\ Support&#x2F;Developer&#x2F;Shared&#x2F;Xcode&#x2F;Plug-ins -name Info.plist -maxdepth 3 | xargs -I&amp;#123;&amp;#125; defaults">
+    <meta name="description" content="sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authenticationcreate sftp account without shell permissi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决xcode升级vim插件无法使用问题">
-<meta property="og:url" content="http://yoursite.com/2016/01/21/hello-world/index.html">
+<meta property="og:title" content="setup sftp account and two differences authentication logins">
+<meta property="og:url" content="http://yoursite.com/2016/06/17/setup-sftp-account-and-two-ways-login/index.html">
 <meta property="og:site_name" content="Life is Strange">
-<meta property="og:description" content="xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了这个确实坑爹 都没有做自动适配的 一行代码搞定 1find ~&#x2F;Library&#x2F;Application\ Support&#x2F;Developer&#x2F;Shared&#x2F;Xcode&#x2F;Plug-ins -name Info.plist -maxdepth 3 | xargs -I&amp;#123;&amp;#125; defaults">
+<meta property="og:description" content="sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authenticationcreate sftp account without shell permissi">
 <meta property="og:locale" content="zh">
-<meta property="article:published_time" content="2016-01-21T11:24:00.000Z">
-<meta property="article:modified_time" content="2020-06-25T06:35:45.073Z">
+<meta property="article:published_time" content="2016-06-17T07:18:15.000Z">
+<meta property="article:modified_time" content="2020-06-25T09:09:24.469Z">
 <meta property="article:author" content="Ezio Ruan">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@ezioruan">
@@ -87,14 +87,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/01/21/hello-world/" title="解决xcode升级vim插件无法使用问题" itemprop="url">解决xcode升级vim插件无法使用问题</a>
+      <a href="/2016/06/17/setup-sftp-account-and-two-ways-login/" title="setup sftp account and two differences authentication logins" itemprop="url">setup sftp account and two differences authentication logins</a>
   </h1>
   <p class="article-author">By
        
 		<a href="https://plus.google.com/ezioruan?rel=author" title="Ezio Ruan" target="_blank" itemprop="author">Ezio Ruan</a>
 		
   <p class="article-time">
-    <time datetime="2016-01-21T11:24:00.000Z" itemprop="datePublished"> Published 2016-01-21</time>
+    <time datetime="2016-06-17T07:18:15.000Z" itemprop="datePublished"> Published 2016-06-17</time>
     
   </p>
 </header>
@@ -103,13 +103,46 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sftp-is-a-way-to-use-ftp-on-a-linux-server-it-use-the-ssh-account-to-connect-the-server-we-can-setup-the-sftp-account-and-provide-differences-authentication"><span class="toc-number">1.</span> <span class="toc-text">sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authentication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#create-sftp-account-without-shell-permission"><span class="toc-number">1.1.</span> <span class="toc-text">create sftp account without shell permission</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-sftp-directory-for-the-user-and-give-the-permission"><span class="toc-number">1.2.</span> <span class="toc-text">create sftp directory for the user, and give the permission</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-public-key"><span class="toc-number">1.3.</span> <span class="toc-text">create public key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-sftp-user-config-to-enable-password-and-public-key-authentication"><span class="toc-number">1.4.</span> <span class="toc-text">update sftp user config to enable password and public key authentication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#test-sftp-connection-by-command-line"><span class="toc-number">1.5.</span> <span class="toc-text">test sftp connection by command line</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了<br>这个确实坑爹 都没有做自动适配的</p>
-<p>一行代码搞定</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I&#123;&#125; defaults write &#123;&#125; DVTPlugInCompatibilityUUIDs -array-add `defaults <span class="built_in">read</span> /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`</span><br></pre></td></tr></table></figure>  
+		<h1 id="sftp-is-a-way-to-use-ftp-on-a-linux-server-it-use-the-ssh-account-to-connect-the-server-we-can-setup-the-sftp-account-and-provide-differences-authentication"><a href="#sftp-is-a-way-to-use-ftp-on-a-linux-server-it-use-the-ssh-account-to-connect-the-server-we-can-setup-the-sftp-account-and-provide-differences-authentication" class="headerlink" title="sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authentication"></a>sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authentication</h1><h2 id="create-sftp-account-without-shell-permission"><a href="#create-sftp-account-without-shell-permission" class="headerlink" title="create sftp account without shell permission"></a>create sftp account without shell permission</h2><p>`</p>
+<p>sudo adduser –shell /bin/false sftpuser</p>
+<p>`</p>
+<p>then set the password for the user<br><code>sudo passwd sftpuser</code></p>
+<h2 id="create-sftp-directory-for-the-user-and-give-the-permission"><a href="#create-sftp-directory-for-the-user-and-give-the-permission" class="headerlink" title="create sftp directory for the user, and give the permission"></a>create sftp directory for the user, and give the permission</h2><p>/var/sftp/files here<br>`<br>sudo mkdir -p /var/sftp/files<br>sudo chown sftpuser:sftpuser /var/sftp/files</p>
+<p>sudo chown root:root /var/sftp<br>sudo chmod 755 /var/sftp</p>
+<p>`</p>
+<h2 id="create-public-key"><a href="#create-public-key" class="headerlink" title="create public key"></a>create public key</h2><p>we need to create the files in the user’s home directory, and generate the authentication keys</p>
+<p><code>mkdir /home/sftpuser/.ssh</code></p>
+<p>generate keys by <code>ssh-keygen -t rsa</code> and point the file location  to <code>/home/sftpuser/.ssh/id_rsa</code></p>
+<p>set authorized keys and permission</p>
+<p><code>cd .ssh
+touch authorized_keys
+cat id_rsa.pub &gt;&gt; authorized_keys
+cd ..
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys</code></p>
+<p>save the generate private key to your compucter and give 600 permission</p>
+<p><code>cat /home/sftp/.ssh/id_rsa &gt; sftp.pem
+chmod 600 sftp.pem</code></p>
+<h2 id="update-sftp-user-config-to-enable-password-and-public-key-authentication"><a href="#update-sftp-user-config-to-enable-password-and-public-key-authentication" class="headerlink" title="update sftp user config to enable password and public key authentication"></a>update sftp user config to enable password and public key authentication</h2><p>edit file at /etc/ssh/sshd_config, append below lines<br><code>Match User sftpuser
+    ForceCommand internal-sftp
+    PasswordAuthentication yes
+    ChrootDirectory /var/sftp
+    PermitTunnel no
+    AllowAgentForwarding no
+    AllowTcpForwarding no
+    X11Forwarding no
+    RSAAuthentication yes
+    PubkeyAuthentication yes
+    AuthorizedKeysFile /home/sftpuser/.ssh/authorized_keys</code></p>
+<p>set PasswordAuthentication to yes to enable password authentication,<br>set PubkeyAuthentication to yes to enable public key authentication,</p>
+<p>and then restart sshd services<br><code>sudo service sshd restart</code></p>
+<h2 id="test-sftp-connection-by-command-line"><a href="#test-sftp-connection-by-command-line" class="headerlink" title="test sftp connection by command line"></a>test sftp connection by command line</h2><p>password authentication<br><code>sftp  sftpuser@&lt;server_host&gt;</code></p>
+<p>public key  authentication<br><code>sftp -i sftp.pem sftpuser@&lt;server_host&gt;</code></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -121,7 +154,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/01/21/hello-world/" data-title="解决xcode升级vim插件无法使用问题 | Life is Strange" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/17/setup-sftp-account-and-two-ways-login/" data-title="setup sftp account and two differences authentication logins | Life is Strange" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -134,19 +167,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/03/04/一个简单的漫画下载脚本/" title="一个简单的漫画下载脚本">
-  <strong>上一篇：</strong><br/>
-  <span>
-  一个简单的漫画下载脚本</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/01/20/2016/"  title="2016">
+<a href="/2016/03/04/一个简单的漫画下载脚本/"  title="一个简单的漫画下载脚本">
  <strong>下一篇：</strong><br/> 
- <span>2016
+ <span>一个简单的漫画下载脚本
 </span>
 </a>
 </div>
@@ -163,7 +188,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sftp-is-a-way-to-use-ftp-on-a-linux-server-it-use-the-ssh-account-to-connect-the-server-we-can-setup-the-sftp-account-and-provide-differences-authentication"><span class="toc-number">1.</span> <span class="toc-text">sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authentication</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#create-sftp-account-without-shell-permission"><span class="toc-number">1.1.</span> <span class="toc-text">create sftp account without shell permission</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-sftp-directory-for-the-user-and-give-the-permission"><span class="toc-number">1.2.</span> <span class="toc-text">create sftp directory for the user, and give the permission</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-public-key"><span class="toc-number">1.3.</span> <span class="toc-text">create public key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-sftp-user-config-to-enable-password-and-public-key-authentication"><span class="toc-number">1.4.</span> <span class="toc-text">update sftp user config to enable password and public key authentication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#test-sftp-connection-by-command-line"><span class="toc-number">1.5.</span> <span class="toc-text">test sftp connection by command line</span></a></li></ol></li></ol>
  
   </div>
 
