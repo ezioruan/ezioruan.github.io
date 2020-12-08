@@ -234,8 +234,9 @@ chmod 600 sftp.pem</code></p>
     <div class="article-content">
         
         <p>xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了<br>这个确实坑爹 都没有做自动适配的</p>
-<p>一行代码搞定</p>
+<p>一行代码搞定冲突</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I&#123;&#125; defaults write &#123;&#125; DVTPlugInCompatibilityUUIDs -array-add `defaults <span class="built_in">read</span> /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`</span><br></pre></td></tr></table></figure>
+
         
         
         <p class="article-more-link">
