@@ -226,7 +226,7 @@ The following data is returned to indicate that Apache APISIX was successfully s
 
 ## Test the plugin
 
-![runner-overview](../../assets/images/runner-overview.png)
+![runner-overview](/images/runner-overview.png)
 The diagram above shows the workflow of APISIX on the left, while the plugin runner on the right is responsible for running external plugins written in different languages. apisix-go-plugin-runner is one such runner that supports Go.
 When you configure a plugin runner in APISIX, APISIX will treat the plugin runner as a child process of its own. This sub-process belongs to the same user as the APISIX process. When we restart or reload APISIX, the plugin runner will also be restarted.
 
@@ -270,7 +270,7 @@ Now let's go to http://127.0.0.1:9080/get, the web browser will ask us to input 
 
 Let's it, develop Golang plugin in APISIX is easy 
 
-### summary
+## summary
 At present, go plugin runner is still in the early development stage, and we will gradually improve its functions. A successful open source project is inseparable from your contributions. Welcome to participate in the development of the APISIX Go plugin runner. Let’s build a bridge between Apache APISIX and Go!
 
 ### Full code repo
