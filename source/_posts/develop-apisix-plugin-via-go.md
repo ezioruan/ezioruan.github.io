@@ -1,6 +1,6 @@
 ---
 title: Develop APISIX plugin via Golang
-date: 2021-03-08 8:18:15
+date: 2022-03-08 8:18:15
 tags:
 ---
 
