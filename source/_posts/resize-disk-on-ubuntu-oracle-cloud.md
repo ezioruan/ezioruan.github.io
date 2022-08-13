@@ -1,7 +1,7 @@
 ---
 title: resize disk sise for ubuntu instance in Oracle Cloud
 date: 2022-02-08 8:18:15
-tags:
+tags: tools
 ---
 
 oracle has tools to increase disk sise for Oracle Image, but not ubuntu, we need to do it manualy

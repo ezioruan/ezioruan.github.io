@@ -1,7 +1,7 @@
 ---
 title: gpg unusable key
 date: 2020-02-08 8:18:15
-tags:
+tags: tools
 ---
 
 # fix gpg unusable key 

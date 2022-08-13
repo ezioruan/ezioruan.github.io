@@ -1,7 +1,7 @@
 ---
 title: how to acquire ssl certificate for oracle cloud loadbalcer
 date: 2022-07-27 8:18:15
-tags:
+tags: tools
 ---
 
 

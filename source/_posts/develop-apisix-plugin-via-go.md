@@ -1,7 +1,7 @@
 ---
 title: Develop APISIX plugin via Golang
 date: 2022-03-08 8:18:15
-tags:
+tags: System Architecture
 ---
 
 # Develop APISIX plugin via Golang

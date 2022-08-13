@@ -1,7 +1,7 @@
 ---
 title: setup sftp account and two differences authentication logins
 date: 2016-06-17 15:18:15
-tags:
+tags: tools
 ---
 
 # sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authentication

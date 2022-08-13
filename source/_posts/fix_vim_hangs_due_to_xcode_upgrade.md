@@ -1,5 +1,5 @@
 title: 解决xcode升级vim插件无法使用问题
-tags: []
+tags: tools
 categories: []
 date: 2016-01-21 19:24:00
 ---
