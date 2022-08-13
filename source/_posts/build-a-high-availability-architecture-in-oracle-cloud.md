@@ -21,13 +21,18 @@ We'll show how to create this architecture step by step
 
 ## create load balancers in different regions
 - Go to  Network->Load balancer and create a general Load balancer
+![crete-load-balancer](/images/oracle/create-lb.png)
 - Select the corresponding instance network and subnet
-- Select Backend Type, Weight Round Robin
-- Add backend set, select at least two servers with ports to achieve high availability in the area
+- Create Backend set, Select Backend Type, Weight Round Robin
+![crete-backend-set](/images/oracle/create-backend-set.png)
+- Add servers to backend set, select at least two servers with ports to achieve high availability in the area
+![lb-backend](/images/oracle/lb-backend.png)
 - Add Listener; we choose HTTP and listen on port 80. If HTTPS is needed, we can add Listener later
+![lb-Listener](/images/oracle/lb-listener.png)
 - Use the default health check or adjust it according to the needs of the application
 
 After the creation is complete, the Load balancer will have a public network IP, and we will use this IP in the following steps.
+![lb-overview](/images/oracle/load-balancer.png)
 
 
 ## create a DNS record
@@ -53,12 +58,13 @@ ASN steering policies enable you to steer DNS traffic based on autonomous system
 The IP prefix steering policy enables customers to direct DNS traffic based on the IP prefix of the original query.
 
 Here we will use the Geolocation guidance method to configure.
- Select Networking, > Traffic Management Steering Policies -> Create Traffic Management Steering Policy.
-Select  Geolocation Steering
- Enter the name of the rules; other fields keep the default.
-Add an answer pool. We will create an answer pool for the load-balancer in each area, and the name can be the region name; selects A record and fill in the IP of the corresponding load-balancer
- Define the rules,We can define the direction of the traffic according to the region. Here we create the corresponding answer order according to the priority of our rules.
- Add the Global > Catch-all rule. This rule is when our previous rules do not match the matching rules to be carried out in the future and also creates the corresponding response order according to the priority of our rules
-On the bound domain, click Attached Domains. We can add a subdomain, such as hello.example.com
+- Select Networking, > Traffic Management Steering Policies -> Create Traffic Management Steering Policy.
+- Select  Geolocation Steering Enter the name of the rules; other fields keep the default.
+- Add an answer pool. We will create an answer pool for the load-balancer in each area, and the name can be the region name; selects A record and fill in the IP of the corresponding load-balancer
+![traffic-managements](/images/oracle/traffic-managements.png)
+- Define the rules,We can define the direction of the traffic according to the region. Here we create the corresponding answer order according to the priority of our rules.
+- Add the Global > Catch-all rule. This rule is when our previous rules do not match the matching rules to be carried out in the future and also creates the corresponding response order according to the priority of our rules
+![traffic-managements-rules](/images/oracle/traffic-managements-rules.png)
+- On the bound domain, click Attached Domains. We can add a subdomain, such as hello.example.com
 
-In this way, we have completed all the steps to create a cross-region highly available application in OCI.
+In this way, we have completed all the steps to create a cross-region highly available application in OCI. 
