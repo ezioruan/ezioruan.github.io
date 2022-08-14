@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Build a high availability architecture in oracle cloud | Ezio Ruan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can pro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build a high availability architecture in oracle cloud">
+<meta property="og:url" content="http://example.com/2022/08/10/build-a-high-availability-architecture-in-oracle-cloud/index.html">
+<meta property="og:site_name" content="Ezio Ruan&#39;s Blog">
+<meta property="og:description" content="This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can pro">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/oracle/architecture.png">
+<meta property="og:image" content="http://example.com/images/oracle/create-lb.png">
+<meta property="og:image" content="http://example.com/images/oracle/create-backend-set.png">
+<meta property="og:image" content="http://example.com/images/oracle/lb-backend.png">
+<meta property="og:image" content="http://example.com/images/oracle/lb-listener.png">
+<meta property="og:image" content="http://example.com/images/oracle/load-balancer.png">
+<meta property="og:image" content="http://example.com/images/oracle/traffic-managements.png">
+<meta property="og:image" content="http://example.com/images/oracle/traffic-managements-rules.png">
+<meta property="article:published_time" content="2022-08-10T15:07:06.000Z">
+<meta property="article:modified_time" content="2022-08-14T01:15:45.767Z">
+<meta property="article:author" content="Ezio Ruan">
+<meta property="article:tag" content="System Architecture">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/oracle/architecture.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ezio Ruan's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Ezio Ruan&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Life is Strange</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-build-a-high-availability-architecture-in-oracle-cloud" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/10/build-a-high-availability-architecture-in-oracle-cloud/" class="article-date">
+  <time class="dt-published" datetime="2022-08-10T15:07:06.000Z" itemprop="datePublished">2022-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Build a high availability architecture in oracle cloud
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains<br>We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.</p>
+<p>Let’s take a look at our system design architecture design first.<br><img src="/images/oracle/architecture.png" alt="architecture"></p>
+<p>In this architecture, We create three load-balancers distributed in the us-west, us-east, and Europe regions.<br>So we have three regions with identical resources. And the traffic will route to the specific load balancer with rules. And fallback to other load balancers.<br>We’ll show how to create this architecture step by step</p>
+<span id="more"></span>
+
+
+<h2 id="create-load-balancers-in-different-regions"><a href="#create-load-balancers-in-different-regions" class="headerlink" title="create load balancers in different regions"></a>create load balancers in different regions</h2><ul>
+<li>Go to  Network-&gt;Load balancer and create a general Load balancer<br><img src="/images/oracle/create-lb.png" alt="crete-load-balancer"></li>
+<li>Select the corresponding instance network and subnet</li>
+<li>Create Backend set, Select Backend Type, Weight Round Robin<br><img src="/images/oracle/create-backend-set.png" alt="crete-backend-set"></li>
+<li>Add servers to backend set, select at least two servers with ports to achieve high availability in the area<br><img src="/images/oracle/lb-backend.png" alt="lb-backend"></li>
+<li>Add Listener; we choose HTTP and listen on port 80. If HTTPS is needed, we can add Listener later<br><img src="/images/oracle/lb-listener.png" alt="lb-Listener"></li>
+<li>Use the default health check or adjust it according to the needs of the application</li>
+</ul>
+<p>After the creation is complete, the Load balancer will have a public network IP, and we will use this IP in the following steps.<br><img src="/images/oracle/load-balancer.png" alt="lb-overview"></p>
+<h2 id="create-a-DNS-record"><a href="#create-a-DNS-record" class="headerlink" title="create a DNS record"></a>create a DNS record</h2><p>Click Create Zone. In the Create Zone dialog, choose Manual.<br>Enter the name of the zone to develop. Select the organizational account to create the site—Select Primary as the area controlling zone content directly in OCI. Click Create. The system makes and publishes the zone and contains the necessary SOA and NS records.</p>
+<p>Then you need to point the name server of the corresponding domain name to the NS record in your domain name management system so that the records created by OCI can take effect.</p>
+<h2 id="Create-Traffic-Management-Steering"><a href="#Create-Traffic-Management-Steering" class="headerlink" title="Create Traffic Management Steering"></a>Create Traffic Management Steering</h2><p>After we have the domain name, we can create traffic rules for the given domain.</p>
+<p>oracle cloud supports the following traffic rules</p>
+<ul>
+<li>Failover<br>Failover policies allow you to determine the order in which you want to provide acknowledgments in the policy (for example, primary and secondary). Oracle Cloud Infrastructure health checks are used to determine the health of the answers in the policy. If the health check for the primary answer fails, DNS traffic will automatically be directed to the secondary answer.</li>
+<li>Load balancer<br>Load balancer policies allow traffic to be distributed across multiple endpoints. Endpoints can be assigned equal weights to distribute traffic evenly across endpoints, or custom weights can be assigned for ratio load balancing. Oracle Cloud Infrastructure Health Checks are used to determine the health of endpoints. If an endpoint is determined to be unhealthy, DNS traffic is automatically distributed to other endpoints.</li>
+<li>Geolocation guidance<br>Geo-directed policies distribute DNS traffic to different endpoints based on the location of the end user. Customers can define geographic regions consisting of origin continents, countries, or states (North America) and define an individual endpoint or set of endpoints for each region.</li>
+<li>ASN steering<br>ASN steering policies enable you to steer DNS traffic based on autonomous system numbers (ASNs). DNS queries originating from a specific ASN or set of ASNs can be directed to specified endpoints.</li>
+<li>IP prefix bootstrap<br>The IP prefix steering policy enables customers to direct DNS traffic based on the IP prefix of the original query.</li>
+</ul>
+<p>Here we will use the Geolocation guidance method to configure.</p>
+<ul>
+<li>Select Networking, &gt; Traffic Management Steering Policies -&gt; Create Traffic Management Steering Policy.</li>
+<li>Select  Geolocation Steering Enter the name of the rules; other fields keep the default.</li>
+<li>Add an answer pool. We will create an answer pool for the load-balancer in each area, and the name can be the region name; selects A record and fill in the IP of the corresponding load-balancer<br><img src="/images/oracle/traffic-managements.png" alt="traffic-managements"></li>
+<li>Define the rules,We can define the direction of the traffic according to the region. Here we create the corresponding answer order according to the priority of our rules.</li>
+<li>Add the Global &gt; Catch-all rule. This rule is when our previous rules do not match the matching rules to be carried out in the future and also creates the corresponding response order according to the priority of our rules<br><img src="/images/oracle/traffic-managements-rules.png" alt="traffic-managements-rules"></li>
+<li>On the bound domain, click Attached Domains. We can add a subdomain, such as hello.example.com</li>
+</ul>
+<p>In this way, we have completed all the steps to create a cross-region highly available application in OCI. </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/10/build-a-high-availability-architecture-in-oracle-cloud/" data-id="cl6smykyf0001chou3xbo64j0" data-title="Build a high availability architecture in oracle cloud" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/System-Architecture/" rel="tag">System Architecture</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">how to acquire ssl certificate for oracle cloud loadbalcer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Architecture/" rel="tag">System Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/" rel="tag">tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/System-Architecture/" style="font-size: 10px;">System Architecture</a> <a href="/tags/tools/" style="font-size: 20px;">tools</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/10/build-a-high-availability-architecture-in-oracle-cloud/">Build a high availability architecture in oracle cloud</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/">how to acquire ssl certificate for oracle cloud loadbalcer</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/08/develop-apisix-plugin-via-go/">Develop APISIX plugin via Golang</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/">resize disk sise for ubuntu instance in Oracle Cloud</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/08/gpg-unusable-public-key/">gpg unusable key</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Ezio Ruan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
