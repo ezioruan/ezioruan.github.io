@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can pro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build a high availability architecture in oracle cloud">
+<meta property="og:url" content="http://example.com/2022/08/10/build-a-high-availability-architecture-in-oracle-cloud/index.html">
+<meta property="og:site_name" content="Ezio Ruan&#39;s Blog">
+<meta property="og:description" content="This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can pro">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/oracle/architecture.png">
+<meta property="og:image" content="http://example.com/images/oracle/create-lb.png">
+<meta property="og:image" content="http://example.com/images/oracle/create-backend-set.png">
+<meta property="og:image" content="http://example.com/images/oracle/lb-backend.png">
+<meta property="og:image" content="http://example.com/images/oracle/lb-listener.png">
+<meta property="og:image" content="http://example.com/images/oracle/load-balancer.png">
+<meta property="og:image" content="http://example.com/images/oracle/traffic-managements.png">
+<meta property="og:image" content="http://example.com/images/oracle/traffic-managements-rules.png">
+<meta property="article:published_time" content="2022-08-10T15:07:06.000Z">
+<meta property="article:modified_time" content="2022-08-14T08:56:41.862Z">
+<meta property="article:author" content="Ezio Ruan">
+<meta property="article:tag" content="System Architecture">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/oracle/architecture.png">
+
+<link rel="canonical" href="http://example.com/2022/08/10/build-a-high-availability-architecture-in-oracle-cloud/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Build a high availability architecture in oracle cloud | Ezio Ruan's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ezio Ruan's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life is Strange</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/10/build-a-high-availability-architecture-in-oracle-cloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Build a high availability architecture in oracle cloud
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-08-10 15:07:06" itemprop="dateCreated datePublished" datetime="2022-08-10T15:07:06+00:00">2022-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-14 08:56:41" itemprop="dateModified" datetime="2022-08-14T08:56:41+00:00">2022-08-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains<br>We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.</p>
+<p>Let’s take a look at our system design architecture design first.<br><img src="/images/oracle/architecture.png" alt="architecture"></p>
+<p>In this architecture, We create three load-balancers distributed in the us-west, us-east, and Europe regions.<br>So we have three regions with identical resources. And the traffic will route to the specific load balancer with rules. And fallback to other load balancers.<br>We’ll show how to create this architecture step by step</p>
+<span id="more"></span>
+
+
+<h2 id="create-load-balancers-in-different-regions"><a href="#create-load-balancers-in-different-regions" class="headerlink" title="create load balancers in different regions"></a>create load balancers in different regions</h2><ul>
+<li>Go to  Network-&gt;Load balancer and create a general Load balancer<br><img src="/images/oracle/create-lb.png" alt="crete-load-balancer"></li>
+<li>Select the corresponding instance network and subnet</li>
+<li>Create Backend set, Select Backend Type, Weight Round Robin<br><img src="/images/oracle/create-backend-set.png" alt="crete-backend-set"></li>
+<li>Add servers to backend set, select at least two servers with ports to achieve high availability in the area<br><img src="/images/oracle/lb-backend.png" alt="lb-backend"></li>
+<li>Add Listener; we choose HTTP and listen on port 80. If HTTPS is needed, we can add Listener later<br><img src="/images/oracle/lb-listener.png" alt="lb-Listener"></li>
+<li>Use the default health check or adjust it according to the needs of the application</li>
+</ul>
+<p>After the creation is complete, the Load balancer will have a public network IP, and we will use this IP in the following steps.<br><img src="/images/oracle/load-balancer.png" alt="lb-overview"></p>
+<h2 id="create-a-DNS-record"><a href="#create-a-DNS-record" class="headerlink" title="create a DNS record"></a>create a DNS record</h2><p>Click Create Zone. In the Create Zone dialog, choose Manual.<br>Enter the name of the zone to develop. Select the organizational account to create the site—Select Primary as the area controlling zone content directly in OCI. Click Create. The system makes and publishes the zone and contains the necessary SOA and NS records.</p>
+<p>Then you need to point the name server of the corresponding domain name to the NS record in your domain name management system so that the records created by OCI can take effect.</p>
+<h2 id="Create-Traffic-Management-Steering"><a href="#Create-Traffic-Management-Steering" class="headerlink" title="Create Traffic Management Steering"></a>Create Traffic Management Steering</h2><p>After we have the domain name, we can create traffic rules for the given domain.</p>
+<p>oracle cloud supports the following traffic rules</p>
+<ul>
+<li>Failover<br>Failover policies allow you to determine the order in which you want to provide acknowledgments in the policy (for example, primary and secondary). Oracle Cloud Infrastructure health checks are used to determine the health of the answers in the policy. If the health check for the primary answer fails, DNS traffic will automatically be directed to the secondary answer.</li>
+<li>Load balancer<br>Load balancer policies allow traffic to be distributed across multiple endpoints. Endpoints can be assigned equal weights to distribute traffic evenly across endpoints, or custom weights can be assigned for ratio load balancing. Oracle Cloud Infrastructure Health Checks are used to determine the health of endpoints. If an endpoint is determined to be unhealthy, DNS traffic is automatically distributed to other endpoints.</li>
+<li>Geolocation guidance<br>Geo-directed policies distribute DNS traffic to different endpoints based on the location of the end user. Customers can define geographic regions consisting of origin continents, countries, or states (North America) and define an individual endpoint or set of endpoints for each region.</li>
+<li>ASN steering<br>ASN steering policies enable you to steer DNS traffic based on autonomous system numbers (ASNs). DNS queries originating from a specific ASN or set of ASNs can be directed to specified endpoints.</li>
+<li>IP prefix bootstrap<br>The IP prefix steering policy enables customers to direct DNS traffic based on the IP prefix of the original query.</li>
+</ul>
+<p>Here we will use the Geolocation guidance method to configure.</p>
+<ul>
+<li>Select Networking, &gt; Traffic Management Steering Policies -&gt; Create Traffic Management Steering Policy.</li>
+<li>Select  Geolocation Steering Enter the name of the rules; other fields keep the default.</li>
+<li>Add an answer pool. We will create an answer pool for the load-balancer in each area, and the name can be the region name; selects A record and fill in the IP of the corresponding load-balancer<br><img src="/images/oracle/traffic-managements.png" alt="traffic-managements"></li>
+<li>Define the rules,We can define the direction of the traffic according to the region. Here we create the corresponding answer order according to the priority of our rules.</li>
+<li>Add the Global &gt; Catch-all rule. This rule is when our previous rules do not match the matching rules to be carried out in the future and also creates the corresponding response order according to the priority of our rules<br><img src="/images/oracle/traffic-managements-rules.png" alt="traffic-managements-rules"></li>
+<li>On the bound domain, click Attached Domains. We can add a subdomain, such as hello.example.com</li>
+</ul>
+<p>In this way, we have completed all the steps to create a cross-region highly available application in OCI. </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/System-Architecture/" rel="tag"># System Architecture</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/" rel="prev" title="how to acquire ssl certificate for oracle cloud loadbalcer">
+      <i class="fa fa-chevron-left"></i> how to acquire ssl certificate for oracle cloud loadbalcer
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#create-load-balancers-in-different-regions"><span class="nav-number">1.</span> <span class="nav-text">create load balancers in different regions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-a-DNS-record"><span class="nav-number">2.</span> <span class="nav-text">create a DNS record</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-Traffic-Management-Steering"><span class="nav-number">3.</span> <span class="nav-text">Create Traffic Management Steering</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ezio Ruan</p>
+  <div class="site-description" itemprop="description">Focus on backend development and work remotelly. Happy coding, happy living!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ezioruan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ezioruan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ezioruan@gmail.com" title="E-Mail → mailto:ezioruan@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ezio Ruan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
