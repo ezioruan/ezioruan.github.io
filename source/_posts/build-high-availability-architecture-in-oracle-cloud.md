@@ -1,5 +1,5 @@
 ---
-title: Build a high availability architecture in oracle cloud
+title: Build high availability architecture in oracle cloud
 date: 2022-08-10 15:07:06
 tags: System Architecture
 ---

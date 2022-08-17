@@ -34,6 +34,7 @@ type Plugin interface {
  Filter(conf interface{}, w http.ResponseWriter, r pkgHTTP.Request)
 }
 ```
+<!--more-->
 
 - Name returns the plugin's name
 - ParseConfig will accept a bytes array and we can define our plugin settings
