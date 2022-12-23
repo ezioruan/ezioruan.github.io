@@ -54,6 +54,7 @@ We then construct the credentials like this:
 -  Define the plugin's config by username/password
 -  Handler HTTP request from Filter function, try to decode the Authorization and compare with the config, if the username/password matches, let the request go through (do nothing) otherwise return 401
 
+<!--more-->
 
 Here's the code
 
