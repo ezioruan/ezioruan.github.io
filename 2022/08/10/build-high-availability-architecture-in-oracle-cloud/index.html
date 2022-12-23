@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can pro">
+  <meta name="description" content="This is an article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Build high availability architecture in oracle cloud">
 <meta property="og:url" content="http://example.com/2022/08/10/build-high-availability-architecture-in-oracle-cloud/index.html">
 <meta property="og:site_name" content="Ezio Ruan&#39;s Blog">
-<meta property="og:description" content="This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can pro">
+<meta property="og:description" content="This is an article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and c">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/oracle/architecture.png">
 <meta property="og:image" content="http://example.com/images/oracle/create-lb.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://example.com/images/oracle/traffic-managements.png">
 <meta property="og:image" content="http://example.com/images/oracle/traffic-managements-rules.png">
 <meta property="article:published_time" content="2022-08-10T15:07:06.000Z">
-<meta property="article:modified_time" content="2022-08-17T13:40:46.502Z">
+<meta property="article:modified_time" content="2022-12-23T08:50:12.786Z">
 <meta property="article:author" content="Ezio Ruan">
 <meta property="article:tag" content="System Architecture">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-17 13:40:46" itemprop="dateModified" datetime="2022-08-17T13:40:46+00:00">2022-08-17</time>
+                <time title="Modified: 2022-12-23 08:50:12" itemprop="dateModified" datetime="2022-12-23T08:50:12+00:00">2022-12-23</time>
               </span>
 
           
@@ -219,7 +219,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains<br>We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.</p>
+        <p>This is an article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains<br>We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.</p>
 <p>Let’s take a look at our system design architecture design first.<br><img src="/images/oracle/architecture.png" alt="architecture"></p>
 <p>In this architecture, We create three load-balancers distributed in the us-west, us-east, and Europe regions.<br>So we have three regions with identical resources. And the traffic will route to the specific load balancer with rules. And fallback to other load balancers.<br>We’ll show how to create this architecture step by step</p>
 <span id="more"></span>
