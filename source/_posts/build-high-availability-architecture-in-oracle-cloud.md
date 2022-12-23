@@ -5,7 +5,7 @@ tags: System Architecture
 ---
 
 
-This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains
+This is an article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains
 We'll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.
 
 
