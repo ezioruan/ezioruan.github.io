@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ezio Ruan&#39;s Blog</title>
+  <icon>http://example.com/icon.png</icon>
+  <subtitle>Life is Strange</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-12-24T03:08:43.380Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Ezio Ruan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Build high availability architecture in oracle cloud</title>
+    <link href="http://example.com/2022/08/10/build-high-availability-architecture-in-oracle-cloud/"/>
+    <id>http://example.com/2022/08/10/build-high-availability-architecture-in-oracle-cloud/</id>
+    <published>2022-08-10T15:07:06.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains&lt;br&gt;We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.&lt;/p&gt;
+&lt;p&gt;Let’s take a look at our system design architecture design first.&lt;br&gt;&lt;img src=&quot;/images/oracle/architecture.png&quot; alt=&quot;architecture&quot;&gt;&lt;/p&gt;
+&lt;p&gt;In this architecture, We create three load-balancers distributed in the us-west, us-east, and Europe regions.&lt;br&gt;So we have three regions with identical resources. And the traffic will route to the specific load balancer with rules. And fallback to other load balancers.&lt;br&gt;We’ll show how to create this architecture step by step&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="System Architecture" scheme="http://example.com/tags/System-Architecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>how to acquire ssl certificate for oracle cloud loadbalcer</title>
+    <link href="http://example.com/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/"/>
+    <id>http://example.com/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/</id>
+    <published>2022-07-27T08:18:15.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;for example we will acquire ssl certificate for ezioruan.com&lt;/p&gt;
+&lt;h1 id=&quot;install&quot;&gt;&lt;a href=&quot;#install&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="tools" scheme="http://example.com/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to do data migration</title>
+    <link href="http://example.com/2022/07/18/how-to-do-data-migration/"/>
+    <id>http://example.com/2022/07/18/how-to-do-data-migration/</id>
+    <published>2022-07-18T08:18:15.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;#What is Data Migration?&lt;br&gt;Data migration is the process of moving data from one system to another. While this might seem straightforward, it involves storage, database, or application change.&lt;br&gt;Any data migration will involve at least the transform and load steps in the context of the extract&amp;#x2F;transform&amp;#x2F;load (ETL) process. This means that extracted data needs to go through a series of functions in preparation, after which it can be loaded into a target location.&lt;/p&gt;
+&lt;p&gt;A strategic data migration plan should include consideration of these critical factors:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Knowing the data&lt;/em&gt; — Before migration, source data must undergo a complete audit. Unexpected issues can surface if this step is ignored.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Cleanup&lt;/em&gt; — Once you identify any issues with your source data, they must be resolved. This may require additional software tools and third-party resources because of the scale of the work.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Maintenance&lt;/em&gt; and protection — Data undergoes degradation after some time, making it unreliable. This means there must be controls in place to maintain data quality.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Governance&lt;/em&gt; — Tracking and reporting on data quality is crucial because it enables a better understanding of data integrity. The processes and tools used to produce this information should be highly usable and automate functions where possible.&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="System Architecture" scheme="http://example.com/tags/System-Architecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Develop APISIX plugin via Golang</title>
+    <link href="http://example.com/2022/03/08/develop-apisix-plugin-via-go/"/>
+    <id>http://example.com/2022/03/08/develop-apisix-plugin-via-go/</id>
+    <published>2022-03-08T08:18:15.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Develop-APISIX-plugin-via-Golang&quot;&gt;&lt;a href=&quot;#Develop-APISIX-plugin-via-Golang&quot; class=&quot;headerlink&quot; title=&quot;Develop APISIX plugin via Golang&quot;&gt;&lt;/a&gt;Develop APISIX plugin via Golang&lt;/h1&gt;&lt;p&gt;APISIX allows users to extend functions through plugins, Although the Apache APISIX kernel code is written in Lua by the plugin, Apache APISIX supports the development of plugins in multiple languages, such as Go and Java. This article will explain in detail how to use plugins to develop Apache APISIX.&lt;br&gt;We will write an HTTP base auth plugin in Golang&lt;/p&gt;
+&lt;h2 id=&quot;write-the-plugin&quot;&gt;&lt;a href=&quot;#write-the-plugin&quot; class=&quot;headerlink&quot; title=&quot;write the plugin&quot;&gt;&lt;/a&gt;write the plugin&lt;/h2&gt;&lt;h3 id=&quot;Prerequisites&quot;&gt;&lt;a href=&quot;#Prerequisites&quot; class=&quot;headerlink&quot; title=&quot;Prerequisites&quot;&gt;&lt;/a&gt;Prerequisites&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Go (&amp;gt;&amp;#x3D; 1.15)&lt;/li&gt;
+&lt;li&gt;apisix-go-plugin-runner&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s look at the Plugin interface, To write a custom plugin, we need to implement the plugin’s interface  &lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;type Plugin interface &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // Name returns the plguin name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; Name() string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // ParseConf is the method to parse the given plugin configuration. When the&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // configuration can&amp;#x27;t be parsed, it will be skipped.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; ParseConf(in []byte) (conf interface&amp;#123;&amp;#125;, err error)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // Filter is the method to handle request.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // It is like the `http.ServeHTTP`, plus the ctx and the configuration created by&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // ParseConf.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; //&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // When the `w` is written, the execution of the plugin chain will be stopped.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // We don&amp;#x27;t use onion model like Gin/Caddy because we don&amp;#x27;t serve the whole request lifecycle&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; // inside the runner. The plugin is only a filter running at one stage.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; Filter(conf interface&amp;#123;&amp;#125;, w http.ResponseWriter, r pkgHTTP.Request)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    
+    <category term="System Architecture" scheme="http://example.com/tags/System-Architecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>resize disk sise for ubuntu instance in Oracle Cloud</title>
+    <link href="http://example.com/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/"/>
+    <id>http://example.com/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/</id>
+    <published>2022-02-08T08:18:15.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;oracle has tools to increase disk sise for Oracle Image, but not ubuntu, we need to do it manualy&lt;/p&gt;
+&lt;p&gt;The script internally calls</summary>
+        
+      
+    
+    
+    
+    
+    <category term="tools" scheme="http://example.com/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gpg unusable key</title>
+    <link href="http://example.com/2020/02/08/gpg-unusable-public-key/"/>
+    <id>http://example.com/2020/02/08/gpg-unusable-public-key/</id>
+    <published>2020-02-08T08:18:15.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;fix-gpg-unusable-key&quot;&gt;&lt;a href=&quot;#fix-gpg-unusable-key&quot; class=&quot;headerlink&quot; title=&quot;fix gpg unusable key&quot;&gt;&lt;/a&gt;fix gpg unusable</summary>
+        
+      
+    
+    
+    
+    
+    <category term="tools" scheme="http://example.com/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>setup sftp account and two differences authentication logins</title>
+    <link href="http://example.com/2016/06/17/setup-sftp-account-and-two-ways-login/"/>
+    <id>http://example.com/2016/06/17/setup-sftp-account-and-two-ways-login/</id>
+    <published>2016-06-17T15:18:15.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="tools" scheme="http://example.com/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一个简单的漫画下载脚本</title>
+    <link href="http://example.com/2016/03/04/a-simple-comic-script/"/>
+    <id>http://example.com/2016/03/04/a-simple-comic-script/</id>
+    <published>2016-03-04T15:07:06.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近看暗杀教室实在是太麻烦了。手机app不更新 贴吧只有最新一话 网页在线看广告多得要死&lt;/p&gt;
+&lt;p&gt;简单的写了下 只针对暗杀教室这个漫画 不过其他漫画理论上也是可以的&lt;br&gt;地址在 &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="tools" scheme="http://example.com/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决xcode升级vim插件无法使用问题</title>
+    <link href="http://example.com/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/"/>
+    <id>http://example.com/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/</id>
+    <published>2016-01-21T19:24:00.000Z</published>
+    <updated>2022-12-24T03:08:43.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了&lt;br&gt;这个确实坑爹 都没有做自动适配的&lt;/p&gt;
+&lt;p&gt;一行代码搞定冲突&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+    <category term="tools" scheme="http://example.com/tags/tools/"/>
+    
+  </entry>
+  
+</feed>
