@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ezioruan.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Configuring VLANs and DHCP for User GroupsIn a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Configure VLANs and DHCP using dnsmasq and veth pairs in Linux">
+<meta property="og:url" content="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/index.html">
+<meta property="og:site_name" content="Ezio Ruan&#39;s Blog">
+<meta property="og:description" content="Configuring VLANs and DHCP for User GroupsIn a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ezioruan.github.io/images/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux.png">
+<meta property="article:published_time" content="2022-07-10T15:07:06.000Z">
+<meta property="article:modified_time" content="2023-03-09T02:52:03.054Z">
+<meta property="article:author" content="Ezio Ruan">
+<meta property="article:tag" content="Networking">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ezioruan.github.io/images/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux.png">
+
+<link rel="canonical" href="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>How to Configure VLANs and DHCP using dnsmasq and veth pairs in Linux | Ezio Ruan's Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b65efa19a977c3cc45cda14497207451";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Ezio Ruan's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ezio Ruan's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life is Strange</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          How to Configure VLANs and DHCP using dnsmasq and veth pairs in Linux
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-10 15:07:06" itemprop="dateCreated datePublished" datetime="2022-07-10T15:07:06+00:00">2022-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Configuring-VLANs-and-DHCP-for-User-Groups"><a href="#Configuring-VLANs-and-DHCP-for-User-Groups" class="headerlink" title="Configuring VLANs and DHCP for User Groups"></a>Configuring VLANs and DHCP for User Groups</h1><p>In a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks) provide a way to do this by dividing a physical network into multiple logical networks. This allows different user groups to be isolated from each other and to have their own set of configurations, such as DHCP (Dynamic Host Configuration Protocol) settings.</p>
+<p>In this tutorial, we will go through the steps of configuring VLANs and DHCP for different user groups.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Before we begin, we assume that you have the following:</p>
+<ul>
+<li>A Linux machine with a network interface named tap_home that is connected to a physical network</li>
+<li>Root access to the Linux machine</li>
+<li>Basic knowledge of networking concepts, such as IP addresses and subnets</li>
+</ul>
+<p><img src="/images/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux.png" alt="network_topology-overview"></p>
+<h2 id="Creating-VLANs"><a href="#Creating-VLANs" class="headerlink" title="Creating VLANs"></a>Creating VLANs</h2><p>The first step is to create VLANs for each user group. We will create two VLANs, one for each user group, with IDs 100 and 200.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip link add link tap_home name tap_home.100 type vlan id 100</span><br><span class="line">ip link add link tap_home name tap_home.200 type vlan id 200</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h2 id="Setting-VLAN-IDs-for-User-Groups"><a href="#Setting-VLAN-IDs-for-User-Groups" class="headerlink" title="Setting VLAN IDs for User Groups"></a>Setting VLAN IDs for User Groups</h2><p>Next, we need to set the VLAN ID for each user group. This can be done using the vpmcmm command.</p>
+<h2 id="Installing-dnsmasq"><a href="#Installing-dnsmasq" class="headerlink" title="Installing dnsmasq"></a>Installing dnsmasq</h2><p>We will use dnsmasq to provide DHCP services for each VLAN. Dnsmasq is a lightweight DHCP and DNS server that is easy to configure.</p>
+<h2 id="Creating-VLAN-Configuration-Files"><a href="#Creating-VLAN-Configuration-Files" class="headerlink" title="Creating VLAN Configuration Files"></a>Creating VLAN Configuration Files</h2><p>For each VLAN, we will create a configuration file that specifies the DHCP settings, such as the DNS server, gateway, and IP address range. Here is an example configuration file for VLAN 100:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#port=53100</span><br><span class="line">domain-needed</span><br><span class="line">bogus-priv</span><br><span class="line">#listen-address=127.0.0.1</span><br><span class="line">expand-hosts</span><br><span class="line">domain=dns-example.com</span><br><span class="line">cache-size=1000</span><br><span class="line"># Set the limit on DHCP leases, the default is 150</span><br><span class="line">dhcp-lease-max=150</span><br><span class="line"></span><br><span class="line"># The DHCP server needs somewhere on disk to keep its lease database.</span><br><span class="line"># This defaults to a sane location, but if you want to change it, use</span><br><span class="line"># the line below.</span><br><span class="line">dhcp-leasefile=/home/tap_home/dnsmasq.leases</span><br><span class="line"></span><br><span class="line">interface=tap_home.100</span><br><span class="line">dhcp-option=1,255.255.255.0</span><br><span class="line">dhcp-range=VLAN100,192.168.172.20,192.168.172.100,86400</span><br><span class="line"># gw</span><br><span class="line">dhcp-option=VLAN100,3,192.168.172.1</span><br><span class="line"># dns</span><br><span class="line">dhcp-option=VLAN100,6,192.168.172.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Here is an example configuration file for VLAN 200:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#port=53100</span><br><span class="line">domain-needed</span><br><span class="line">bogus-priv</span><br><span class="line">#listen-address=127.0.0.1</span><br><span class="line">expand-hosts</span><br><span class="line">domain=dns-example.com</span><br><span class="line">cache-size=1000</span><br><span class="line"># Set the limit on DHCP leases, the default is 150</span><br><span class="line">dhcp-lease-max=150</span><br><span class="line"></span><br><span class="line"># The DHCP server needs somewhere on disk to keep its lease database.</span><br><span class="line"># This defaults to a sane location, but if you want to change it, use</span><br><span class="line"># the line below.</span><br><span class="line">dhcp-leasefile=/home/tap_home/dnsmasq.leases</span><br><span class="line"></span><br><span class="line">interface=tap_home.200</span><br><span class="line">dhcp-option=1,255.255.255.0</span><br><span class="line">dhcp-range=VLAN200,192.168.173.20,192.168.173.100,86400</span><br><span class="line"># gw</span><br><span class="line">dhcp-option=VLAN200,3,192.168.173.1</span><br><span class="line"># dns</span><br><span class="line">dhcp-option=VLAN200,6,192.168.173.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Next, we need to configure the IP addresses of the VLAN interfaces. We’ll assign 192.168.172.1&#x2F;24 to tap_home.100 and 192.168.173.1&#x2F;24 to tap_home.200:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ip addr add 192.168.172.1/24 dev tap_home.100</span><br><span class="line">ip addr add 192.168.173.1/24 dev tap_home.200</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Finally, we can bring up the network interfaces:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ip link set tap_home up</span><br><span class="line">ip link set lo up</span><br><span class="line">ip link set tap_home.100 up</span><br><span class="line">ip link set tap_home.200 up</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Now we’re ready to create the veth pairs that will be used to connect our namespaces. We’ll create two pairs, beijing&#x2F;veth100 and shanghai&#x2F;veth200:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ip l a beijing type veth peer name veth100</span><br><span class="line">ip l a shanghai type veth peer name veth200</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>We’ll assign IP addresses of 192.168.100.1&#x2F;24 and 192.168.200.1&#x2F;24 to beijing and shanghai, respectively:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ip addr a 192.168.100.1/24 dev beijing</span><br><span class="line">ip addr a 192.168.200.1/24 dev shanghai</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Configuring-VLANs-and-Network-Namespaces-for-Network-Isolation"><a href="#Configuring-VLANs-and-Network-Namespaces-for-Network-Isolation" class="headerlink" title="Configuring VLANs and Network Namespaces for Network Isolation"></a>Configuring VLANs and Network Namespaces for Network Isolation</h2><p>Putting the other end of the eth pair into a netns and configuring its IP address:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ip link set veth100 netns ns-beijing</span><br><span class="line">ip link set veth200 netns ns-shanghai</span><br><span class="line"></span><br><span class="line">ip netns exec ns-beijing ip addr add 192.168.100.2/24 dev veth100</span><br><span class="line">ip netns exec ns-shanghai ip addr add 192.168.200.2/24 dev veth200</span><br><span class="line"></span><br><span class="line">ip netns exec ns-beijing ip link set veth100 up</span><br><span class="line">ip netns exec ns-shanghai ip link set veth200 up</span><br></pre></td></tr></table></figure>
+
+<p>Setting the default route for the VLAN’s tap interface to go out via the other end of the eth pair:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip netns exec ns-beijing ip route add default via 192.168.100.1</span><br><span class="line">ip netns exec ns-shanghai ip route add default via 192.168.200.1</span><br></pre></td></tr></table></figure>
+<p>Adding rules to use the correct routing tables for packets originating from each VLAN:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip rule add from 192.168.172.1/24 lookup 100</span><br><span class="line">ip rule add from 192.168.173.1/24 lookup 200</span><br></pre></td></tr></table></figure>
+<p>Configuring NAT for outbound traffic:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -j MASQUERADE</span><br></pre></td></tr></table></figure>
+
+<p>Setting up routing tables for each VLAN:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip route add 192.168.172.0/24 dev tap_home.100 proto kernel scope link src 192.168.172.1 table 100</span><br><span class="line">ip route add 192.168.173.0/24 dev tap_home.200 proto kernel scope link src 192.168.173.1 table 200</span><br></pre></td></tr></table></figure>
+<p>Overall, this setup allows for traffic from each VLAN to be routed through its own dedicated netns, ensuring complete separation of network traffic. The use of VLANs also allows for multiple separate networks to exist on the same physical infrastructure, without the need for separate physical network segments.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Networking/" rel="tag"># Networking</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/08/develop-apisix-plugin-via-go/" rel="prev" title="Develop APISIX plugin via Golang">
+      <i class="fa fa-chevron-left"></i> Develop APISIX plugin via Golang
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/18/how-to-do-data-migration/" rel="next" title="How to do data migration">
+      How to do data migration <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuring-VLANs-and-DHCP-for-User-Groups"><span class="nav-number">1.</span> <span class="nav-text">Configuring VLANs and DHCP for User Groups</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Prerequisites"><span class="nav-number">1.1.</span> <span class="nav-text">Prerequisites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-VLANs"><span class="nav-number">1.2.</span> <span class="nav-text">Creating VLANs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-VLAN-IDs-for-User-Groups"><span class="nav-number">1.3.</span> <span class="nav-text">Setting VLAN IDs for User Groups</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Installing-dnsmasq"><span class="nav-number">1.4.</span> <span class="nav-text">Installing dnsmasq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-VLAN-Configuration-Files"><span class="nav-number">1.5.</span> <span class="nav-text">Creating VLAN Configuration Files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuring-VLANs-and-Network-Namespaces-for-Network-Isolation"><span class="nav-number">1.6.</span> <span class="nav-text">Configuring VLANs and Network Namespaces for Network Isolation</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ezio Ruan"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Ezio Ruan</p>
+  <div class="site-description" itemprop="description">Focus on backend development and work remotelly. Happy coding, happy living!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ezioruan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ezioruan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ezioruan@gmail.com" title="E-Mail → mailto:ezioruan@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ezio Ruan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

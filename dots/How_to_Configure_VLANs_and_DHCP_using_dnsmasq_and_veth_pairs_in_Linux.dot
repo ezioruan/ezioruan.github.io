@@ -1,0 +1,46 @@
+digraph network_topology {
+    rankdir=LR;
+    subgraph cluster_home {
+        label="Home Network";
+        style=dashed;
+        tap_home [shape=box, style=bold, label="tap_home"];
+        tap_home_100 [shape=box, style=dotted, label="tap_home.100"];
+        tap_home_200 [shape=box, style=dotted, label="tap_home.200"];
+        tap_home -> tap_home_100;
+        tap_home -> tap_home_200;
+        {rank=same; tap_home_100; tap_home_200;}
+    }
+    subgraph cluster_veth {
+        label="Virtual Ethernet";
+        style=dashed;
+        beijing [shape=box, style=bold, label="beijing"];
+        shanghai [shape=box, style=bold, label="shanghai"];
+        veth100 [shape=box, style=dotted, label="veth100"];
+        veth200 [shape=box, style=dotted, label="veth200"];
+        beijing -> veth100 [label="192.168.100.1/24"];
+        shanghai -> veth200 [label="192.168.200.1/24"];
+        veth100 -> beijing_ns [label="192.168.100.2/24"];
+        veth200 -> shanghai_ns [label="192.168.200.2/24"];
+        {rank=same; beijing; shanghai;}
+        {rank=same; veth100; veth200;}
+    }
+    subgraph cluster_ns {
+        label="Network Namespace";
+        style=dashed;
+        beijing_ns [shape=box, style=bold, label="beijing_ns"];
+        shanghai_ns [shape=box, style=bold, label="shanghai_ns"];
+        {rank=same; beijing_ns; shanghai_ns;}
+    }
+    subgraph cluster_vlan {
+        label="VLAN";
+        style=dashed;
+        vlan100 [shape=box, style=bold, label="VLAN100"];
+        vlan200 [shape=box, style=bold, label="VLAN200"];
+        tap_home_100 -> vlan100 [label="192.168.172.1/24"];
+        tap_home_200 -> vlan200 [label="192.168.173.1/24"];
+        vlan100 -> veth100;
+        vlan200 -> veth200;
+        {rank=same; vlan100; vlan200;}
+    }
+}
+

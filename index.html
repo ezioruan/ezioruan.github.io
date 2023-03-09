@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -269,7 +269,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -346,7 +346,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -371,6 +371,88 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/07/18/how-to-do-data-migration/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/" class="post-title-link" itemprop="url">How to Configure VLANs and DHCP using dnsmasq and veth pairs in Linux</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-10 15:07:06" itemprop="dateCreated datePublished" datetime="2022-07-10T15:07:06+00:00">2022-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Configuring-VLANs-and-DHCP-for-User-Groups"><a href="#Configuring-VLANs-and-DHCP-for-User-Groups" class="headerlink" title="Configuring VLANs and DHCP for User Groups"></a>Configuring VLANs and DHCP for User Groups</h1><p>In a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks) provide a way to do this by dividing a physical network into multiple logical networks. This allows different user groups to be isolated from each other and to have their own set of configurations, such as DHCP (Dynamic Host Configuration Protocol) settings.</p>
+<p>In this tutorial, we will go through the steps of configuring VLANs and DHCP for different user groups.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Before we begin, we assume that you have the following:</p>
+<ul>
+<li>A Linux machine with a network interface named tap_home that is connected to a physical network</li>
+<li>Root access to the Linux machine</li>
+<li>Basic knowledge of networking concepts, such as IP addresses and subnets</li>
+</ul>
+<p><img src="/images/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux.png" alt="network_topology-overview"></p>
+<h2 id="Creating-VLANs"><a href="#Creating-VLANs" class="headerlink" title="Creating VLANs"></a>Creating VLANs</h2><p>The first step is to create VLANs for each user group. We will create two VLANs, one for each user group, with IDs 100 and 200.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip link add link tap_home name tap_home.100 type vlan id 100</span><br><span class="line">ip link add link tap_home name tap_home.200 type vlan id 200</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -425,7 +507,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -503,7 +585,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -576,7 +658,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -648,7 +730,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -746,7 +828,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -812,7 +894,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-02-14 01:42:14" itemprop="dateModified" datetime="2023-02-14T01:42:14+00:00">2023-02-14</time>
+                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
               </span>
 
           
@@ -912,12 +994,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
