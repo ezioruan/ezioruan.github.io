@@ -21,10 +21,10 @@ We'll show how to create this architecture step by step
 
 ## create load balancers in different regions
 - Go to  Network->Load balancer and create a general Load balancer
-![crete-load-balancer](/images/oracle/create-lb.png)
+![create-load-balancer](/images/oracle/create-lb.png)
 - Select the corresponding instance network and subnet
 - Create Backend set, Select Backend Type, Weight Round Robin
-![crete-backend-set](/images/oracle/create-backend-set.png)
+![create-backend-set](/images/oracle/create-backend-set.png)
 - Add servers to backend set, select at least two servers with ports to achieve high availability in the area
 ![lb-backend](/images/oracle/lb-backend.png)
 - Add Listener; we choose HTTP and listen on port 80. If HTTPS is needed, we can add Listener later
