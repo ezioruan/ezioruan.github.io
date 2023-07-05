@@ -23,7 +23,7 @@
   <meta name="description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ezio Ruan&#39;s Blog">
-<meta property="og:url" content="https://ezioruan.github.io/archives/2022/02/index.html">
+<meta property="og:url" content="https://ezioruan.github.io/page/2/index.html">
 <meta property="og:site_name" content="Ezio Ruan&#39;s Blog">
 <meta property="og:description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
 <meta property="og:locale" content="en_US">
@@ -31,20 +31,20 @@
 <meta property="article:tag" content="EzioRuan,Blog,Backend">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ezioruan.github.io/archives/2022/02/">
+<link rel="canonical" href="https://ezioruan.github.io/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | Ezio Ruan's Blog</title>
+  <title>Ezio Ruan's Blog</title>
   
 
 
@@ -158,51 +158,80 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 11 posts in total. Keep on posting.</span>
-      </div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/" class="post-title-link" itemprop="url">解决xcode升级vim插件无法使用问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-01-21 19:24:00" itemprop="dateCreated datePublished" datetime="2016-01-21T19:24:00+00:00">2016-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+          <p>xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了<br>这个确实坑爹 都没有做自动适配的</p>
+<p>一行代码搞定冲突</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I&#123;&#125; defaults write &#123;&#125; DVTPlugInCompatibilityUUIDs -array-add `defaults <span class="built_in">read</span> /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-02-08T08:18:15+00:00"
-              content="2022-02-08">
-          02-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/" itemprop="url">
-            <span itemprop="name">resize disk sise for ubuntu instance in Oracle Cloud</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
-
-
-    </div>
-  </div>
   
   
   
 
+
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 

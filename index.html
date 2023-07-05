@@ -164,6 +164,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/" class="post-title-link" itemprop="url">How to Deploy a Fast One-Click Face Swapping Software on Hugging Face</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-04 15:07:06" itemprop="dateCreated datePublished" datetime="2023-07-04T15:07:06+00:00">2023-07-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Introduction-to-Hugging-Face"><a href="#1-Introduction-to-Hugging-Face" class="headerlink" title="1. Introduction to Hugging Face"></a>1. Introduction to Hugging Face</h2><p><a target="_blank" rel="noopener" href="https://huggingface.co/">Hugging Face</a> is a platform that provides powerful tools and resources for the natural language processing (NLP) community. It offers various pre-trained models, APIs, and tools to simplify the development and deployment of NLP tasks for developers and researchers. The core mission of Hugging Face is to make NLP technology more accessible and shareable, promoting the advancement and democratization of artificial intelligence.</p>
+<p>On Hugging Face, users can access a wide range of pre-trained models for tasks like text classification, question answering, language generation, and more. Additionally, Hugging Face allows users to create their own “Spaces” to store and share their models, code, and datasets. In this guide, we will focus on how to deploy a fast one-click face swapping software on Hugging Face.</p>
+<h2 id="2-Creating-a-Space-and-Uploading-Code"><a href="#2-Creating-a-Space-and-Uploading-Code" class="headerlink" title="2. Creating a Space and Uploading Code"></a>2. Creating a Space and Uploading Code</h2><p>To deploy a one-click face swapping software on Hugging Face, we first need to create a Hugging Face account and then create a new Space.</p>
+<h3 id="2-1-Create-a-Hugging-Face-Account"><a href="#2-1-Create-a-Hugging-Face-Account" class="headerlink" title="2.1 Create a Hugging Face Account"></a>2.1 Create a Hugging Face Account</h3><p>If you don’t have a Hugging Face account yet, head to the <a target="_blank" rel="noopener" href="https://huggingface.co/join">Hugging Face registration page</a> and create a new account.</p>
+<h3 id="2-2-Login-and-Create-a-New-Space"><a href="#2-2-Login-and-Create-a-New-Space" class="headerlink" title="2.2 Login and Create a New Space"></a>2.2 Login and Create a New Space</h3><ol>
+<li><p>Login to <a target="_blank" rel="noopener" href="https://huggingface.co/">Hugging Face</a>, click the “Login” button in the top right corner, and enter your account credentials to log in.</p>
+</li>
+<li><p>After logging in, you will see your username in the top right corner. Click on your username and select “Create a new space.”. and select the Space SDK Gradio<br>for space hardware, we will be using CPU.</p>
+</li>
+<li><p>On the “Create a new space” page, provide a name and description for your Space. Choose a relevant name related to your one-click face swapping software and provide an appropriate description to let others know about your project.</p>
+</li>
+<li><p>Click “Create new space” to finish creating the Space.<br><img src="/images/create-hugging-face-space.png" alt="create-huggingface-space"></p>
+</li>
+</ol>
+<h3 id="2-3-Upload-Code-and-Applications"><a href="#2-3-Upload-Code-and-Applications" class="headerlink" title="2.3 Upload Code and Applications"></a>2.3 Upload Code and Applications</h3><p>To deploy our one-click face swapping software, we will be using the <a target="_blank" rel="noopener" href="https://github.com/ezioruan/roop">roop</a> repository available on GitHub. This software enables one-click face swapping for both images and videos by simply requiring users to upload a portrait image. For the purpose of this guide, we will focus on face swapping as an example. As we are using the free version of Hugging Face’s space, it currently supports CPU inference only.</p>
+<p>To get started, clone the roop repository and create an <code>app.py</code> file. </p>
+<p>we will call the core module in app.py using the following code:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"># -* coding:UTF-8 -*</span><br><span class="line"># !/usr/bin/env python</span><br><span class="line">import numpy as np</span><br><span class="line">import gradio as gr</span><br><span class="line">import roop.globals</span><br><span class="line">from roop.core import (</span><br><span class="line">    start,</span><br><span class="line">    decode_execution_providers,</span><br><span class="line">    suggest_max_memory,</span><br><span class="line">    suggest_execution_threads,</span><br><span class="line">)</span><br><span class="line">from roop.processors.frame.core import get_frame_processors_modules</span><br><span class="line">from roop.utilities import normalize_output_path</span><br><span class="line">import os</span><br><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def swap_face(source_file, target_file):</span><br><span class="line"></span><br><span class="line">    source_path = &quot;input.jpg&quot;</span><br><span class="line">    target_path = &quot;target.jpg&quot;</span><br><span class="line"></span><br><span class="line">    source_image = Image.fromarray(source_file)</span><br><span class="line">    source_image.save(source_path)</span><br><span class="line">    target_image = Image.fromarray(target_file)</span><br><span class="line">    target_image.save(target_path)</span><br><span class="line"></span><br><span class="line">    print(&quot;source_path: &quot;, source_path)</span><br><span class="line">    print(&quot;target_path: &quot;, target_path)</span><br><span class="line"></span><br><span class="line">    roop.globals.source_path = source_path</span><br><span class="line">    roop.globals.target_path = target_path</span><br><span class="line">    output_path = &quot;output.jpg&quot;</span><br><span class="line">    roop.globals.output_path = normalize_output_path(</span><br><span class="line">        roop.globals.source_path, roop.globals.target_path, output_path</span><br><span class="line">    )</span><br><span class="line">    roop.globals.frame_processors = [&quot;face_swapper&quot;]</span><br><span class="line">    roop.globals.headless = True</span><br><span class="line">    roop.globals.keep_fps = True</span><br><span class="line">    roop.globals.keep_audio = True</span><br><span class="line">    roop.globals.keep_frames = False</span><br><span class="line">    roop.globals.many_faces = False</span><br><span class="line">    roop.globals.video_encoder = &quot;libx264&quot;</span><br><span class="line">    roop.globals.video_quality = 18</span><br><span class="line">    roop.globals.max_memory = suggest_max_memory()</span><br><span class="line">    roop.globals.execution_providers = decode_execution_providers([&quot;cpu&quot;])</span><br><span class="line">    roop.globals.execution_threads = suggest_execution_threads()</span><br><span class="line"></span><br><span class="line">    print(</span><br><span class="line">        &quot;start process&quot;,</span><br><span class="line">        roop.globals.source_path,</span><br><span class="line">        roop.globals.target_path,</span><br><span class="line">        roop.globals.output_path,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    for frame_processor in get_frame_processors_modules(</span><br><span class="line">        roop.globals.frame_processors</span><br><span class="line">    ):</span><br><span class="line">        if not frame_processor.pre_check():</span><br><span class="line">            return</span><br><span class="line"></span><br><span class="line">    start()</span><br><span class="line">    return output_path</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = gr.Interface(</span><br><span class="line">    fn=swap_face, inputs=[gr.Image(), gr.Image()], outputs=&quot;image&quot;</span><br><span class="line">)</span><br><span class="line">app.launch()</span><br></pre></td></tr></table></figure>
+
+<p>We will use Gradio to design the user interface for our program. The good news is that Hugging Face natively supports Gradio, so we don’t need to import any additional libraries.</p>
+<p>Once you have written the program, you can push it to your Hugging Face space. After the push, the program will be automatically deployed. All you need to do is wait for the deployment to complete, and then you can start using the one-click face swapping software.</p>
+<p>Remember, the deployment process is hassle-free and user-friendly, allowing you to focus on the exciting applications of your software.</p>
+<p><img src="/images/roop-gui.png" alt="huggingface-deployment"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -195,7 +282,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -269,7 +356,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -346,7 +433,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -425,7 +512,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -507,7 +594,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -585,7 +672,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -658,7 +745,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -730,7 +817,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -828,7 +915,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
+                <time title="Modified: 2023-07-05 12:10:38" itemprop="dateModified" datetime="2023-07-05T12:10:38+00:00">2023-07-05</time>
               </span>
 
           
@@ -859,75 +946,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ezio Ruan">
-      <meta itemprop="description" content="Focus on backend development and work remotelly. Happy coding, happy living!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ezio Ruan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/" class="post-title-link" itemprop="url">解决xcode升级vim插件无法使用问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-01-21 19:24:00" itemprop="dateCreated datePublished" datetime="2016-01-21T19:24:00+00:00">2016-01-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-03-09 02:52:03" itemprop="dateModified" datetime="2023-03-09T02:52:03+00:00">2023-03-09</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了<br>这个确实坑爹 都没有做自动适配的</p>
-<p>一行代码搞定冲突</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I&#123;&#125; defaults write &#123;&#125; DVTPlugInCompatibilityUUIDs -array-add `defaults <span class="built_in">read</span> /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -994,7 +1017,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
