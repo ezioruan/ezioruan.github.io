@@ -6,7 +6,7 @@
   <link href="https://ezioruan.github.io/atom.xml" rel="self"/>
   
   <link href="https://ezioruan.github.io/"/>
-  <updated>2023-07-05T12:10:38.508Z</updated>
+  <updated>2023-08-01T03:15:37.576Z</updated>
   <id>https://ezioruan.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/"/>
     <id>https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/</id>
     <published>2023-07-04T15:07:06.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
       
@@ -44,7 +44,7 @@
     <link href="https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/</id>
     <published>2022-08-10T15:07:06.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
     <summary type="html">&lt;p&gt;This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains&lt;br&gt;We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.&lt;/p&gt;
@@ -63,7 +63,7 @@
     <link href="https://ezioruan.github.io/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/</id>
     <published>2022-07-27T08:18:15.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
       
@@ -87,7 +87,7 @@
     <link href="https://ezioruan.github.io/2022/07/18/how-to-do-data-migration/"/>
     <id>https://ezioruan.github.io/2022/07/18/how-to-do-data-migration/</id>
     <published>2022-07-18T08:18:15.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
     <summary type="html">&lt;p&gt;#What is Data Migration?&lt;br&gt;Data migration is the process of moving data from one system to another. While this might seem straightforward, it involves storage, database, or application change.&lt;br&gt;Any data migration will involve at least the transform and load steps in the context of the extract&amp;#x2F;transform&amp;#x2F;load (ETL) process. This means that extracted data needs to go through a series of functions in preparation, after which it can be loaded into a target location.&lt;/p&gt;
@@ -111,7 +111,7 @@
     <link href="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/"/>
     <id>https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/</id>
     <published>2022-07-10T15:07:06.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Configuring-VLANs-and-DHCP-for-User-Groups&quot;&gt;&lt;a href=&quot;#Configuring-VLANs-and-DHCP-for-User-Groups&quot; class=&quot;headerlink&quot; title=&quot;Configuring VLANs and DHCP for User Groups&quot;&gt;&lt;/a&gt;Configuring VLANs and DHCP for User Groups&lt;/h1&gt;&lt;p&gt;In a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks) provide a way to do this by dividing a physical network into multiple logical networks. This allows different user groups to be isolated from each other and to have their own set of configurations, such as DHCP (Dynamic Host Configuration Protocol) settings.&lt;/p&gt;
@@ -138,7 +138,7 @@
     <link href="https://ezioruan.github.io/2022/03/08/develop-apisix-plugin-via-go/"/>
     <id>https://ezioruan.github.io/2022/03/08/develop-apisix-plugin-via-go/</id>
     <published>2022-03-08T08:18:15.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Develop-APISIX-plugin-via-Golang&quot;&gt;&lt;a href=&quot;#Develop-APISIX-plugin-via-Golang&quot; class=&quot;headerlink&quot; title=&quot;Develop APISIX plugin via Golang&quot;&gt;&lt;/a&gt;Develop APISIX plugin via Golang&lt;/h1&gt;&lt;p&gt;APISIX allows users to extend functions through plugins, Although the Apache APISIX kernel code is written in Lua by the plugin, Apache APISIX supports the development of plugins in multiple languages, such as Go and Java. This article will explain in detail how to use plugins to develop Apache APISIX.&lt;br&gt;We will write an HTTP base auth plugin in Golang&lt;/p&gt;
@@ -161,7 +161,7 @@
     <link href="https://ezioruan.github.io/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/</id>
     <published>2022-02-08T08:18:15.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
       
@@ -185,7 +185,7 @@
     <link href="https://ezioruan.github.io/2020/02/08/gpg-unusable-public-key/"/>
     <id>https://ezioruan.github.io/2020/02/08/gpg-unusable-public-key/</id>
     <published>2020-02-08T08:18:15.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
       
@@ -208,7 +208,7 @@
     <link href="https://ezioruan.github.io/2016/06/17/setup-sftp-account-and-two-ways-login/"/>
     <id>https://ezioruan.github.io/2016/06/17/setup-sftp-account-and-two-ways-login/</id>
     <published>2016-06-17T15:18:15.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
       
@@ -231,7 +231,7 @@
     <link href="https://ezioruan.github.io/2016/03/04/a-simple-comic-script/"/>
     <id>https://ezioruan.github.io/2016/03/04/a-simple-comic-script/</id>
     <published>2016-03-04T15:07:06.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
       
@@ -255,7 +255,7 @@
     <link href="https://ezioruan.github.io/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/"/>
     <id>https://ezioruan.github.io/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/</id>
     <published>2016-01-21T19:24:00.000Z</published>
-    <updated>2023-07-05T12:10:38.508Z</updated>
+    <updated>2023-08-01T03:15:37.576Z</updated>
     
     
       
