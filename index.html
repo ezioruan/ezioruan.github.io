@@ -175,6 +175,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2024/04/17/use_fauxpilot_as_github_copilot_alternative/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on Backend and AI development, work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/17/use_fauxpilot_as_github_copilot_alternative/" class="post-title-link" itemprop="url">Use Fauxpilot as an alternative to GitHub Copilot for offline code assistance in VSCode and Vim.</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-04-17 15:18:15" itemprop="dateCreated datePublished" datetime="2024-04-17T15:18:15+00:00">2024-04-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Why-Use-Fauxpilot"><a href="#Why-Use-Fauxpilot" class="headerlink" title="Why Use Fauxpilot?"></a>Why Use Fauxpilot?</h3><p><a target="_blank" rel="noopener" href="https://github.com/fauxpilot/fauxpilot">Fauxpilot</a> is an open-source alternative to GitHub Copilot, leveraging the power of large-scale models to deliver a range of AI-driven functionalities, including dialogue and code suggestions. In this article, we’ll focus exclusively on its code suggestion capabilities, with other features to be detailed in future posts.</p>
+<h3 id="Local-Setup"><a href="#Local-Setup" class="headerlink" title="Local Setup"></a>Local Setup</h3><p>To run Fauxpilot, the following prerequisites must be met:</p>
+<ul>
+<li>A Windows or Linux system with an NVIDIA graphics card.</li>
+<li>At least 50GB of local storage space (required for the large model).</li>
+<li>Docker and <a target="_blank" rel="noopener" href="https://github.com/NVIDIA/nvidia-container-toolkit">nvidia-container-toolkit</a>.</li>
+<li>The <code>curl</code> and <code>zstd</code> command-line tools, necessary for model downloads.</li>
+</ul>
+<p>I am using Ubuntu.</p>
+<p>The Docker installation is simple and won’t be elaborated here. The NVIDIA Container Toolkit is a project that enables containers to utilize NVIDIA GPU resources. The following commands can be used for installation:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Configure the production repository:</span><br><span class="line">curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \</span><br><span class="line">  &amp;&amp; curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \</span><br><span class="line">    sed &#x27;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#x27; | \</span><br><span class="line">    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list</span><br><span class="line"></span><br><span class="line"># Configure the repository to use experimental packages: </span><br><span class="line">sed -i -e &#x27;/experimental/ s/^#//g&#x27; /etc/apt/sources.list.d/nvidia-container-toolkit.list</span><br><span class="line"></span><br><span class="line"># Update and install:</span><br><span class="line">sudo apt-get update &amp;&amp; apt-get install -y nvidia-container-toolkit</span><br><span class="line"></span><br><span class="line"># Configure the container runtime to use NVIDIA GPUs:</span><br><span class="line">sudo nvidia-ctk runtime configure --runtime=docker</span><br></pre></td></tr></table></figure>
+
+<p>Then, simply restart Docker:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<p>Installation methods for other systems can be found in the complete <a target="_blank" rel="noopener" href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html">installation guide</a>.</p>
+<p>Next, enter the project root directory and run the startup script directly:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd fauxpilot</span><br><span class="line">./setup.sh</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/17/use_fauxpilot_as_github_copilot_alternative/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -206,7 +294,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -293,7 +381,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -367,7 +455,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -444,7 +532,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -523,7 +611,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -605,7 +693,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -683,7 +771,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -756,7 +844,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -828,7 +916,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
+                <time title="Modified: 2024-04-18 09:40:44" itemprop="dateModified" datetime="2024-04-18T09:40:44+00:00">2024-04-18</time>
               </span>
 
           
@@ -876,72 +964,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp -i sftp.pem sftpuser@&lt;server_host&gt;</span><br></pre></td></tr></table></figure>
 
 
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2016/03/04/a-simple-comic-script/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ezio Ruan">
-      <meta itemprop="description" content="Focus on Backend and AI development, work remotelly. Happy coding, happy living!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ezio Ruan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/04/a-simple-comic-script/" class="post-title-link" itemprop="url">一个简单的漫画下载脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-03-04 15:07:06" itemprop="dateCreated datePublished" datetime="2016-03-04T15:07:06+00:00">2016-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-01 03:24:54" itemprop="dateModified" datetime="2023-08-01T03:24:54+00:00">2023-08-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近看暗杀教室实在是太麻烦了。手机app不更新 贴吧只有最新一话 网页在线看广告多得要死</p>
-<p>简单的写了下 只针对暗杀教室这个漫画 不过其他漫画理论上也是可以的<br>地址在 <a target="_blank" rel="noopener" href="https://github.com/ezioruan/Ansatsu-Kyoushitsu">https://github.com/ezioruan/Ansatsu-Kyoushitsu</a></p>
 
       
     </div>
@@ -1028,12 +1050,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -1068,7 +1090,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
