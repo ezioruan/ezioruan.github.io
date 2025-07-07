@@ -6,7 +6,7 @@
   <link href="https://ezioruan.github.io/atom.xml" rel="self"/>
   
   <link href="https://ezioruan.github.io/"/>
-  <updated>2024-04-18T09:40:44.370Z</updated>
+  <updated>2025-07-07T08:42:08.774Z</updated>
   <id>https://ezioruan.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://ezioruan.github.io/2024/04/17/use_fauxpilot_as_github_copilot_alternative/"/>
     <id>https://ezioruan.github.io/2024/04/17/use_fauxpilot_as_github_copilot_alternative/</id>
     <published>2024-04-17T15:18:15.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.774Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;Why-Use-Fauxpilot&quot;&gt;&lt;a href=&quot;#Why-Use-Fauxpilot&quot; class=&quot;headerlink&quot; title=&quot;Why Use Fauxpilot?&quot;&gt;&lt;/a&gt;Why Use Fauxpilot?&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fauxpilot/fauxpilot&quot;&gt;Fauxpilot&lt;/a&gt; is an open-source alternative to GitHub Copilot, leveraging the power of large-scale models to deliver a range of AI-driven functionalities, including dialogue and code suggestions. In this article, we’ll focus exclusively on its code suggestion capabilities, with other features to be detailed in future posts.&lt;/p&gt;
@@ -54,7 +54,7 @@
     <link href="https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/"/>
     <id>https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/</id>
     <published>2023-07-04T15:07:06.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.773Z</updated>
     
     
       
@@ -77,7 +77,7 @@
     <link href="https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/</id>
     <published>2022-08-10T15:07:06.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.773Z</updated>
     
     
     <summary type="html">&lt;p&gt;This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains&lt;br&gt;We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.&lt;/p&gt;
@@ -96,7 +96,7 @@
     <link href="https://ezioruan.github.io/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/</id>
     <published>2022-07-27T08:18:15.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.774Z</updated>
     
     
       
@@ -120,7 +120,7 @@
     <link href="https://ezioruan.github.io/2022/07/18/how-to-do-data-migration/"/>
     <id>https://ezioruan.github.io/2022/07/18/how-to-do-data-migration/</id>
     <published>2022-07-18T08:18:15.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.774Z</updated>
     
     
     <summary type="html">&lt;p&gt;#What is Data Migration?&lt;br&gt;Data migration is the process of moving data from one system to another. While this might seem straightforward, it involves storage, database, or application change.&lt;br&gt;Any data migration will involve at least the transform and load steps in the context of the extract&amp;#x2F;transform&amp;#x2F;load (ETL) process. This means that extracted data needs to go through a series of functions in preparation, after which it can be loaded into a target location.&lt;/p&gt;
@@ -144,7 +144,7 @@
     <link href="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/"/>
     <id>https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/</id>
     <published>2022-07-10T15:07:06.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.773Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Configuring-VLANs-and-DHCP-for-User-Groups&quot;&gt;&lt;a href=&quot;#Configuring-VLANs-and-DHCP-for-User-Groups&quot; class=&quot;headerlink&quot; title=&quot;Configuring VLANs and DHCP for User Groups&quot;&gt;&lt;/a&gt;Configuring VLANs and DHCP for User Groups&lt;/h1&gt;&lt;p&gt;In a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks) provide a way to do this by dividing a physical network into multiple logical networks. This allows different user groups to be isolated from each other and to have their own set of configurations, such as DHCP (Dynamic Host Configuration Protocol) settings.&lt;/p&gt;
@@ -171,7 +171,7 @@
     <link href="https://ezioruan.github.io/2022/03/08/develop-apisix-plugin-via-go/"/>
     <id>https://ezioruan.github.io/2022/03/08/develop-apisix-plugin-via-go/</id>
     <published>2022-03-08T08:18:15.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.773Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Develop-APISIX-plugin-via-Golang&quot;&gt;&lt;a href=&quot;#Develop-APISIX-plugin-via-Golang&quot; class=&quot;headerlink&quot; title=&quot;Develop APISIX plugin via Golang&quot;&gt;&lt;/a&gt;Develop APISIX plugin via Golang&lt;/h1&gt;&lt;p&gt;APISIX allows users to extend functions through plugins, Although the Apache APISIX kernel code is written in Lua by the plugin, Apache APISIX supports the development of plugins in multiple languages, such as Go and Java. This article will explain in detail how to use plugins to develop Apache APISIX.&lt;br&gt;We will write an HTTP base auth plugin in Golang&lt;/p&gt;
@@ -190,11 +190,28 @@
   </entry>
   
   <entry>
+    <title>Exploring Structural Pattern Matching in Python 3.10</title>
+    <link href="https://ezioruan.github.io/2022/02/18/exploring-structural-pattern-matching-python-3-10/"/>
+    <id>https://ezioruan.github.io/2022/02/18/exploring-structural-pattern-matching-python-3-10/</id>
+    <published>2022-02-18T09:00:00.000Z</published>
+    <updated>2025-07-07T08:42:08.774Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Python 3.10 introduced a host of new features, but perhaps the most talked-about is Structural Pattern Matching. This feature, introduced in PEP 634, adds a &lt;code&gt;match&lt;/code&gt; statement that behaves like a &lt;code&gt;switch&lt;/code&gt; statement found in other languages, but with much more power and flexibility. It allows you to match variables against a variety of patterns, making complex conditional logic more readable and less error-prone.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python, Python3.10, Pattern Matching" scheme="https://ezioruan.github.io/tags/Python-Python3-10-Pattern-Matching/"/>
+    
+  </entry>
+  
+  <entry>
     <title>resize disk sise for ubuntu instance in Oracle Cloud</title>
     <link href="https://ezioruan.github.io/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/</id>
     <published>2022-02-08T08:18:15.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.774Z</updated>
     
     
       
@@ -214,11 +231,113 @@
   </entry>
   
   <entry>
+    <title>Async/Await: A Tale of Two Runtimes (Node.js vs. Python)</title>
+    <link href="https://ezioruan.github.io/2021/12/15/async-await-nodejs-vs-python/"/>
+    <id>https://ezioruan.github.io/2021/12/15/async-await-nodejs-vs-python/</id>
+    <published>2021-12-15T11:00:00.000Z</published>
+    <updated>2025-07-07T08:42:08.773Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Both Node.js and Python have embraced the &lt;code&gt;async/await&lt;/code&gt; syntax to simplify asynchronous programming. While the keywords are the same and the high-level concept is similar—making asynchronous code look synchronous—the underlying models and ecosystems have key differences. Understanding these distinctions is crucial for developers working in both environments.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python, Node.js, asyncio, Concurrency" scheme="https://ezioruan.github.io/tags/Python-Node-js-asyncio-Concurrency/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python&#39;s Async/Await: Common Pitfalls and How to Avoid Them</title>
+    <link href="https://ezioruan.github.io/2021/11/12/python-async-await-pitfalls/"/>
+    <id>https://ezioruan.github.io/2021/11/12/python-async-await-pitfalls/</id>
+    <published>2021-11-12T09:20:00.000Z</published>
+    <updated>2025-07-07T08:42:08.774Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Python’s &lt;code&gt;asyncio&lt;/code&gt; library, along with the &lt;code&gt;async&lt;/code&gt; and &lt;code&gt;await&lt;/code&gt; keywords, has brought powerful concurrency capabilities to the language. It allows developers to write highly scalable I&amp;#x2F;O-bound applications. However, the asynchronous paradigm introduces new challenges and potential pitfalls that can trip up even experienced developers. This article highlights some of the most common traps and how to avoid them.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python, asyncio, Concurrency" scheme="https://ezioruan.github.io/tags/Python-asyncio-Concurrency/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Practical Type Hinting in Python with MyPy</title>
+    <link href="https://ezioruan.github.io/2021/09/10/practical-type-hinting-with-mypy/"/>
+    <id>https://ezioruan.github.io/2021/09/10/practical-type-hinting-with-mypy/</id>
+    <published>2021-09-10T14:00:00.000Z</published>
+    <updated>2025-07-07T08:42:08.774Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Python has always been a dynamically typed language, which is a key part of its flexibility and ease of use. However, for large and complex codebases, the lack of static type checking can lead to bugs that are hard to find. Since PEP 484, Python has official support for type hints, and tools like MyPy allow us to bring the benefits of static type checking to our Python projects.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python, MyPy, Type Hinting, Development" scheme="https://ezioruan.github.io/tags/Python-MyPy-Type-Hinting-Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Node.js Error Handling: A Practical Guide to Robust Applications</title>
+    <link href="https://ezioruan.github.io/2021/07/22/nodejs-error-handling-guide/"/>
+    <id>https://ezioruan.github.io/2021/07/22/nodejs-error-handling-guide/</id>
+    <published>2021-07-22T15:00:00.000Z</published>
+    <updated>2025-07-07T08:42:08.774Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Building a robust Node.js application requires more than just writing functional code; it demands a solid error handling strategy. Unhandled errors can crash your server, leading to downtime and a poor user experience. This guide covers the essential patterns and best practices for handling errors effectively in your Node.js projects.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Node.js, Error Handling, Best Practices" scheme="https://ezioruan.github.io/tags/Node-js-Error-Handling-Best-Practices/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Getting Started with FastAPI for High-Performance APIs</title>
+    <link href="https://ezioruan.github.io/2021/05/20/getting-started-with-fastapi/"/>
+    <id>https://ezioruan.github.io/2021/05/20/getting-started-with-fastapi/</id>
+    <published>2021-05-20T11:30:00.000Z</published>
+    <updated>2025-07-07T08:42:08.774Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;When it comes to building APIs in Python, frameworks like Flask and Django have long been the go-to choices. However, a newer framework has rapidly gained popularity for its incredible performance and developer-friendly features: FastAPI. Built on top of Starlette and Pydantic, FastAPI makes it easy to create modern, fast, and well-documented APIs.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python, FastAPI, Web Development, API" scheme="https://ezioruan.github.io/tags/Python-FastAPI-Web-Development-API/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mastering Python Virtual Environments: From venv to pip-tools</title>
+    <link href="https://ezioruan.github.io/2021/01/25/mastering-python-virtual-environments/"/>
+    <id>https://ezioruan.github.io/2021/01/25/mastering-python-virtual-environments/</id>
+    <published>2021-01-25T10:00:00.000Z</published>
+    <updated>2025-07-07T08:42:08.774Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;In the world of Python development, managing dependencies and project-specific environments is a foundational skill. It ensures that your projects are isolated, reproducible, and free from conflicts. For years, the standard has been &lt;code&gt;venv&lt;/code&gt; combined with a &lt;code&gt;requirements.txt&lt;/code&gt; file. In this post, we’ll revisit this classic approach and then explore how &lt;code&gt;pip-tools&lt;/code&gt; can significantly improve the workflow.&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Python, Development, venv, pip-tools" scheme="https://ezioruan.github.io/tags/Python-Development-venv-pip-tools/"/>
+    
+  </entry>
+  
+  <entry>
     <title>gpg unusable key</title>
     <link href="https://ezioruan.github.io/2020/02/08/gpg-unusable-public-key/"/>
     <id>https://ezioruan.github.io/2020/02/08/gpg-unusable-public-key/</id>
     <published>2020-02-08T08:18:15.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.774Z</updated>
     
     
       
@@ -241,7 +360,7 @@
     <link href="https://ezioruan.github.io/2016/06/17/setup-sftp-account-and-two-ways-login/"/>
     <id>https://ezioruan.github.io/2016/06/17/setup-sftp-account-and-two-ways-login/</id>
     <published>2016-06-17T15:18:15.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.774Z</updated>
     
     
       
@@ -264,7 +383,7 @@
     <link href="https://ezioruan.github.io/2016/03/04/a-simple-comic-script/"/>
     <id>https://ezioruan.github.io/2016/03/04/a-simple-comic-script/</id>
     <published>2016-03-04T15:07:06.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.773Z</updated>
     
     
       
@@ -288,7 +407,7 @@
     <link href="https://ezioruan.github.io/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/"/>
     <id>https://ezioruan.github.io/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/</id>
     <published>2016-01-21T19:24:00.000Z</published>
-    <updated>2024-04-18T09:40:44.370Z</updated>
+    <updated>2025-07-07T08:42:08.774Z</updated>
     
     
       
