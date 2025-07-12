@@ -6,7 +6,7 @@
   <link href="https://ezioruan.github.io/atom.xml" rel="self"/>
   
   <link href="https://ezioruan.github.io/"/>
-  <updated>2025-07-12T04:25:15.905Z</updated>
+  <updated>2025-07-12T06:02:34.558Z</updated>
   <id>https://ezioruan.github.io/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <title></title>
     <link href="https://ezioruan.github.io/2025/07/12/docker-best-practices/"/>
     <id>https://ezioruan.github.io/2025/07/12/docker-best-practices/</id>
-    <published>2025-07-12T04:25:15.905Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <published>2025-07-12T06:02:34.558Z</published>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
-    <summary type="html">&lt;p&gt;—title: “Docker Best Practices: Writing Optimized and Secure Dockerfiles”date: 2022-10-05 11:20:00tags: Docker, Containerization, DevOps, Best Practices—Docker has revolutionized how we build, ship, and run applications. At the heart of a good container is a well-crafted &lt;code&gt;Dockerfile&lt;/code&gt;. While it’s easy to get an application running in a container, creating an image that is small, secure, and fast requires following a set of best practices. This guide covers the essentials for writing optimized and secure Dockerfiles.</summary>
+    <summary type="html">&lt;p&gt;—title: “Docker Best Practices: Writing Optimized and Secure Dockerfiles”date: 2022-10-05 11:20:00tags: Docker, Containerization, DevOps, Best Practices—Docker has revolutionized how we build, ship, and run applications. At the heart of a good container is a well-crafted &lt;code&gt;Dockerfile&lt;/code&gt;. While it’s easy to get an application running in a container, creating an image that is small, secure, and fast requires following a set of best practices. This guide covers the essentials for writing optimized and secure Dockerfiles.&lt;/p&gt;</summary>
     
     
     
@@ -36,7 +36,7 @@
     <link href="https://ezioruan.github.io/2024/04/22/understanding-retrieval-augmented-generation/"/>
     <id>https://ezioruan.github.io/2024/04/22/understanding-retrieval-augmented-generation/</id>
     <published>2024-04-22T14:30:00.000Z</published>
-    <updated>2025-07-12T04:25:15.906Z</updated>
+    <updated>2025-07-12T06:02:34.559Z</updated>
     
     
     <summary type="html">&lt;p&gt;Large Language Models (LLMs) like GPT-4 are incredibly powerful, but they have two fundamental limitations: they don’t know anything about events that occurred after their training cut-off date, and they don’t have access to your private, domain-specific data. This can lead to outdated or generic responses. The solution to this problem is a powerful architectural pattern called &lt;strong&gt;Retrieval-Augmented Generation (RAG)&lt;/strong&gt;.&lt;/p&gt;</summary>
@@ -53,7 +53,7 @@
     <link href="https://ezioruan.github.io/2024/04/17/use_fauxpilot_as_github_copilot_alternative/"/>
     <id>https://ezioruan.github.io/2024/04/17/use_fauxpilot_as_github_copilot_alternative/</id>
     <published>2024-04-17T15:18:15.000Z</published>
-    <updated>2025-07-12T04:25:15.906Z</updated>
+    <updated>2025-07-12T06:02:34.559Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;Why-Use-Fauxpilot&quot;&gt;&lt;a href=&quot;#Why-Use-Fauxpilot&quot; class=&quot;headerlink&quot; title=&quot;Why Use Fauxpilot?&quot;&gt;&lt;/a&gt;Why Use Fauxpilot?&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fauxpilot/fauxpilot&quot;&gt;Fauxpilot&lt;/a&gt; is an open-source alternative to GitHub Copilot, leveraging the power of large-scale models to deliver a range of AI-driven functionalities, including dialogue and code suggestions. In this article, we’ll focus exclusively on its code suggestion capabilities, with other features to be detailed in future posts.&lt;/p&gt;
@@ -86,7 +86,7 @@
     <link href="https://ezioruan.github.io/2024/03/15/a-first-look-at-uv/"/>
     <id>https://ezioruan.github.io/2024/03/15/a-first-look-at-uv/</id>
     <published>2024-03-15T12:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;The Python packaging ecosystem is powerful but notoriously fragmented. A typical project might use &lt;code&gt;venv&lt;/code&gt; for environments, &lt;code&gt;pip&lt;/code&gt; for installation, &lt;code&gt;pip-tools&lt;/code&gt; for locking dependencies, and maybe &lt;code&gt;pipx&lt;/code&gt; for running tools in isolation. This collection of tools, while functional, can be confusing for newcomers and cumbersome for experts. Enter &lt;code&gt;uv&lt;/code&gt;, a new tool from Astral (the creators of the &lt;code&gt;ruff&lt;/code&gt; linter) that aims to change everything.&lt;/p&gt;</summary>
@@ -103,7 +103,7 @@
     <link href="https://ezioruan.github.io/2024/02/20/building-llm-apps-with-dify-and-fastgpt/"/>
     <id>https://ezioruan.github.io/2024/02/20/building-llm-apps-with-dify-and-fastgpt/</id>
     <published>2024-02-20T10:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;The rise of Large Language Models (LLMs) has opened a new frontier for application development. However, building, deploying, and managing these AI-powered apps can be complex, involving everything from prompt engineering to backend service management. To address this, a new category of tools has emerged: LLM-Ops platforms. Among the most popular open-source options are Dify and FastGPT, which aim to simplify the entire lifecycle of creating and managing LLM applications.&lt;/p&gt;</summary>
@@ -120,7 +120,7 @@
     <link href="https://ezioruan.github.io/2023/10/25/langchain-agents-and-tools/"/>
     <id>https://ezioruan.github.io/2023/10/25/langchain-agents-and-tools/</id>
     <published>2023-10-25T11:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;While Large Language Models (LLMs) are masters of language, their knowledge is static and they can’t interact with the outside world. They can’t check the current weather, perform a calculation, or look up information on a website. This is where the concept of &lt;strong&gt;Agents&lt;/strong&gt; in LangChain comes in. An agent is a system that uses an LLM as its reasoning engine to decide which actions to take to accomplish a goal.&lt;/p&gt;</summary>
@@ -137,7 +137,7 @@
     <link href="https://ezioruan.github.io/2023/08/22/training-first-ml-model-with-scikit-learn/"/>
     <id>https://ezioruan.github.io/2023/08/22/training-first-ml-model-with-scikit-learn/</id>
     <published>2023-08-22T15:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.906Z</updated>
+    <updated>2025-07-12T06:02:34.559Z</updated>
     
     
     <summary type="html">&lt;p&gt;Machine learning can seem intimidating, often associated with complex mathematics and huge datasets. However, thanks to powerful libraries like Scikit-learn, training your first model is more accessible than ever. This guide will walk you through the fundamental steps of a machine learning project, from loading data to making predictions, using a classic example: classifying iris flowers.&lt;/p&gt;</summary>
@@ -154,7 +154,7 @@
     <link href="https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/"/>
     <id>https://ezioruan.github.io/2023/07/04/deploy-your-first-faceswap-app-in-hugging-face/</id>
     <published>2023-07-04T15:07:06.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
       
@@ -177,7 +177,7 @@
     <link href="https://ezioruan.github.io/2023/04/18/getting-started-with-langchain/"/>
     <id>https://ezioruan.github.io/2023/04/18/getting-started-with-langchain/</id>
     <published>2023-04-18T10:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;If you’ve been exploring the world of Large Language Models (LLMs), you’ve likely heard of LangChain. It’s a powerful open-source framework designed to simplify the creation of applications powered by LLMs. LangChain provides a set of modular components and off-the-shelf “chains” that make it easy to build everything from simple prompt-response bots to complex, data-aware agents.&lt;/p&gt;
@@ -195,7 +195,7 @@
     <link href="https://ezioruan.github.io/2022/12/20/what-are-vector-databases/"/>
     <id>https://ezioruan.github.io/2022/12/20/what-are-vector-databases/</id>
     <published>2022-12-20T16:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.906Z</updated>
+    <updated>2025-07-12T06:02:34.559Z</updated>
     
     
     <summary type="html">&lt;p&gt;With the explosion of large language models (LLMs) and other deep learning applications, a new kind of data has become central to AI: vector embeddings. These dense numerical representations of text, images, or audio have one major problem—they are notoriously difficult to search efficiently. This is where a new type of database, the vector database, comes into play.&lt;/p&gt;</summary>
@@ -212,7 +212,7 @@
     <link href="https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/</id>
     <published>2022-08-10T15:07:06.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains&lt;br&gt;We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.&lt;/p&gt;
@@ -231,7 +231,7 @@
     <link href="https://ezioruan.github.io/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/</id>
     <published>2022-07-27T08:18:15.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
       
@@ -255,7 +255,7 @@
     <link href="https://ezioruan.github.io/2022/07/19/managing-infrastructure-with-terraform/"/>
     <id>https://ezioruan.github.io/2022/07/19/managing-infrastructure-with-terraform/</id>
     <published>2022-07-19T09:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.906Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;In modern software development, the line between writing code and managing infrastructure is blurring. The rise of cloud computing has led to the need for a more dynamic and automated way to provision and manage resources. This is where Infrastructure as Code (IaC) comes in, and Terraform is one of the most popular tools leading the charge.&lt;/p&gt;</summary>
@@ -272,7 +272,7 @@
     <link href="https://ezioruan.github.io/2022/07/18/how-to-do-data-migration/"/>
     <id>https://ezioruan.github.io/2022/07/18/how-to-do-data-migration/</id>
     <published>2022-07-18T08:18:15.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;#What is Data Migration?&lt;br&gt;Data migration is the process of moving data from one system to another. While this might seem straightforward, it involves storage, database, or application change.&lt;br&gt;Any data migration will involve at least the transform and load steps in the context of the extract&amp;#x2F;transform&amp;#x2F;load (ETL) process. This means that extracted data needs to go through a series of functions in preparation, after which it can be loaded into a target location.&lt;/p&gt;
@@ -296,7 +296,7 @@
     <link href="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/"/>
     <id>https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/</id>
     <published>2022-07-10T15:07:06.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Configuring-VLANs-and-DHCP-for-User-Groups&quot;&gt;&lt;a href=&quot;#Configuring-VLANs-and-DHCP-for-User-Groups&quot; class=&quot;headerlink&quot; title=&quot;Configuring VLANs and DHCP for User Groups&quot;&gt;&lt;/a&gt;Configuring VLANs and DHCP for User Groups&lt;/h1&gt;&lt;p&gt;In a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks) provide a way to do this by dividing a physical network into multiple logical networks. This allows different user groups to be isolated from each other and to have their own set of configurations, such as DHCP (Dynamic Host Configuration Protocol) settings.&lt;/p&gt;
@@ -323,7 +323,7 @@
     <link href="https://ezioruan.github.io/2022/03/25/from-rest-to-grpc/"/>
     <id>https://ezioruan.github.io/2022/03/25/from-rest-to-grpc/</id>
     <published>2022-03-25T10:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;For years, REST has been the dominant architectural style for building APIs, using the familiar verbs of HTTP and the flexibility of JSON. However, as systems evolve into complex networks of microservices, the need for more performant and strongly-typed communication has grown. Enter gRPC, a modern RPC (Remote Procedure Call) framework developed by Google that is rapidly gaining traction in the world of backend development.&lt;/p&gt;</summary>
@@ -340,7 +340,7 @@
     <link href="https://ezioruan.github.io/2022/03/08/develop-apisix-plugin-via-go/"/>
     <id>https://ezioruan.github.io/2022/03/08/develop-apisix-plugin-via-go/</id>
     <published>2022-03-08T08:18:15.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Develop-APISIX-plugin-via-Golang&quot;&gt;&lt;a href=&quot;#Develop-APISIX-plugin-via-Golang&quot; class=&quot;headerlink&quot; title=&quot;Develop APISIX plugin via Golang&quot;&gt;&lt;/a&gt;Develop APISIX plugin via Golang&lt;/h1&gt;&lt;p&gt;APISIX allows users to extend functions through plugins, Although the Apache APISIX kernel code is written in Lua by the plugin, Apache APISIX supports the development of plugins in multiple languages, such as Go and Java. This article will explain in detail how to use plugins to develop Apache APISIX.&lt;br&gt;We will write an HTTP base auth plugin in Golang&lt;/p&gt;
@@ -363,7 +363,7 @@
     <link href="https://ezioruan.github.io/2022/02/18/exploring-structural-pattern-matching-python-3-10/"/>
     <id>https://ezioruan.github.io/2022/02/18/exploring-structural-pattern-matching-python-3-10/</id>
     <published>2022-02-18T09:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;Python 3.10 introduced a host of new features, but perhaps the most talked-about is Structural Pattern Matching. This feature, introduced in PEP 634, adds a &lt;code&gt;match&lt;/code&gt; statement that behaves like a &lt;code&gt;switch&lt;/code&gt; statement found in other languages, but with much more power and flexibility. It allows you to match variables against a variety of patterns, making complex conditional logic more readable and less error-prone.&lt;/p&gt;</summary>
@@ -380,7 +380,7 @@
     <link href="https://ezioruan.github.io/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/"/>
     <id>https://ezioruan.github.io/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/</id>
     <published>2022-02-08T08:18:15.000Z</published>
-    <updated>2025-07-12T04:25:15.906Z</updated>
+    <updated>2025-07-12T06:02:34.559Z</updated>
     
     
       
@@ -404,7 +404,7 @@
     <link href="https://ezioruan.github.io/2021/12/15/async-await-nodejs-vs-python/"/>
     <id>https://ezioruan.github.io/2021/12/15/async-await-nodejs-vs-python/</id>
     <published>2021-12-15T11:00:00.000Z</published>
-    <updated>2025-07-12T04:25:15.905Z</updated>
+    <updated>2025-07-12T06:02:34.558Z</updated>
     
     
     <summary type="html">&lt;p&gt;Both Node.js and Python have embraced the &lt;code&gt;async/await&lt;/code&gt; syntax to simplify asynchronous programming. While the keywords are the same and the high-level concept is similar—making asynchronous code look synchronous—the underlying models and ecosystems have key differences. Understanding these distinctions is crucial for developers working in both environments.&lt;/p&gt;</summary>
