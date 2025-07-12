@@ -175,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2021/11/12/python-async-await-pitfalls/">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/08/10/build-high-availability-architecture-in-oracle-cloud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -189,7 +189,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/11/12/python-async-await-pitfalls/" class="post-title-link" itemprop="url">Python's Async/Await: Common Pitfalls and How to Avoid Them</a>
+            <a href="/2022/08/10/build-high-availability-architecture-in-oracle-cloud/" class="post-title-link" itemprop="url">Build high availability architecture in oracle cloud</a>
         </h2>
 
         <div class="post-meta">
@@ -199,14 +199,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-11-12 09:20:00" itemprop="dateCreated datePublished" datetime="2021-11-12T09:20:00+00:00">2021-11-12</time>
+              <time title="Created: 2022-08-10 15:07:06" itemprop="dateCreated datePublished" datetime="2022-08-10T15:07:06+00:00">2022-08-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
               </span>
 
           
@@ -220,10 +220,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Python’s <code>asyncio</code> library, along with the <code>async</code> and <code>await</code> keywords, has brought powerful concurrency capabilities to the language. It allows developers to write highly scalable I&#x2F;O-bound applications. However, the asynchronous paradigm introduces new challenges and potential pitfalls that can trip up even experienced developers. This article highlights some of the most common traps and how to avoid them.</p>
+          <p>This article will introduce how to use Oracle Cloud to build a highly available, cross-regional system. We know that high availability describes a system that is available most of the time and can provide us with services. High availability means the service is still available even during a hardware failure or system upgrade. Eliminate single points of failure through proper use of deploying instances across multiple availability domains<br>We’ll create load balancers in three different regions, each with two servers at least behind them that use the same application and expose the same ports.</p>
+<p>Let’s take a look at our system design architecture design first.<br><img src="/images/oracle/architecture.png" alt="architecture"></p>
+<p>In this architecture, We create three load-balancers distributed in the us-west, us-east, and Europe regions.<br>So we have three regions with identical resources. And the traffic will route to the specific load balancer with rules. And fallback to other load balancers.<br>We’ll show how to create this architecture step by step</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/11/12/python-async-await-pitfalls/#more" rel="contents">
+              <a class="btn" href="/2022/08/10/build-high-availability-architecture-in-oracle-cloud/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -247,7 +249,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2021/09/10/practical-type-hinting-with-mypy/">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -261,7 +263,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/09/10/practical-type-hinting-with-mypy/" class="post-title-link" itemprop="url">Practical Type Hinting in Python with MyPy</a>
+            <a href="/2022/07/27/how-to-acquire-ssl-certificate-for-oracle-cloud/" class="post-title-link" itemprop="url">how to acquire ssl certificate for oracle cloud loadbalcer</a>
         </h2>
 
         <div class="post-meta">
@@ -271,14 +273,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-09-10 14:00:00" itemprop="dateCreated datePublished" datetime="2021-09-10T14:00:00+00:00">2021-09-10</time>
+              <time title="Created: 2022-07-27 08:18:15" itemprop="dateCreated datePublished" datetime="2022-07-27T08:18:15+00:00">2022-07-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
               </span>
 
           
@@ -292,10 +294,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Python has always been a dynamically typed language, which is a key part of its flexibility and ease of use. However, for large and complex codebases, the lack of static type checking can lead to bugs that are hard to find. Since PEP 484, Python has official support for type hints, and tools like MyPy allow us to bring the benefits of static type checking to our Python projects.</p>
+          <p>for example we will acquire ssl certificate for ezioruan.com</p>
+<h1 id="install"><a href="#install" class="headerlink" title="install"></a>install</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install certbot</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="get-ssl-certificate-by-dns-change"><a href="#get-ssl-certificate-by-dns-change" class="headerlink" title="get ssl certificate by dns change"></a>get ssl certificate by dns change</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo certbot -d ezioruan.com --manual --preferred-challenges dns certonly</span><br></pre></td></tr></table></figure>
+
+
+<p>it will ask you to create a <code>txt</code> record in your dns provider<br><img src="https://user-images.githubusercontent.com/631411/181157340-1af15699-6163-4c60-9613-24b08927cccb.png" alt="image"></p>
+<p>after add the record press enter and you will get two files <code>fullchain.pem</code> and  <code>privkey.pem</code></p>
+<p><img src="https://user-images.githubusercontent.com/631411/181256803-67bb54a8-9bd1-4c0a-bfbf-bde05fb30bd4.png" alt="image"></p>
+<h1 id="import-to-loadbalcer"><a href="#import-to-loadbalcer" class="headerlink" title="import to loadbalcer"></a>import to loadbalcer</h1><p>parse fullchain.pem in  SSL Certificate and privkey.pem to Private Key</p>
+<p>and you’ll able to use in loadbalcer’s Certificates manager</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/07/19/managing-infrastructure-with-terraform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on Backend and AI development, work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/19/managing-infrastructure-with-terraform/" class="post-title-link" itemprop="url">Managing Your Infrastructure with Terraform: A Beginner's Guide</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-19 09:00:00" itemprop="dateCreated datePublished" datetime="2022-07-19T09:00:00+00:00">2022-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>In modern software development, the line between writing code and managing infrastructure is blurring. The rise of cloud computing has led to the need for a more dynamic and automated way to provision and manage resources. This is where Infrastructure as Code (IaC) comes in, and Terraform is one of the most popular tools leading the charge.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/09/10/practical-type-hinting-with-mypy/#more" rel="contents">
+              <a class="btn" href="/2022/07/19/managing-infrastructure-with-terraform/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -319,7 +398,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2021/07/22/nodejs-error-handling-guide/">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/07/18/how-to-do-data-migration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -333,7 +412,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/22/nodejs-error-handling-guide/" class="post-title-link" itemprop="url">Node.js Error Handling: A Practical Guide to Robust Applications</a>
+            <a href="/2022/07/18/how-to-do-data-migration/" class="post-title-link" itemprop="url">How to do data migration</a>
         </h2>
 
         <div class="post-meta">
@@ -343,14 +422,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-07-22 15:00:00" itemprop="dateCreated datePublished" datetime="2021-07-22T15:00:00+00:00">2021-07-22</time>
+              <time title="Created: 2022-07-18 08:18:15" itemprop="dateCreated datePublished" datetime="2022-07-18T08:18:15+00:00">2022-07-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
               </span>
 
           
@@ -364,10 +443,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Building a robust Node.js application requires more than just writing functional code; it demands a solid error handling strategy. Unhandled errors can crash your server, leading to downtime and a poor user experience. This guide covers the essential patterns and best practices for handling errors effectively in your Node.js projects.</p>
+          <p>#What is Data Migration?<br>Data migration is the process of moving data from one system to another. While this might seem straightforward, it involves storage, database, or application change.<br>Any data migration will involve at least the transform and load steps in the context of the extract&#x2F;transform&#x2F;load (ETL) process. This means that extracted data needs to go through a series of functions in preparation, after which it can be loaded into a target location.</p>
+<p>A strategic data migration plan should include consideration of these critical factors:</p>
+<ul>
+<li><em>Knowing the data</em> — Before migration, source data must undergo a complete audit. Unexpected issues can surface if this step is ignored.</li>
+<li><em>Cleanup</em> — Once you identify any issues with your source data, they must be resolved. This may require additional software tools and third-party resources because of the scale of the work.</li>
+<li><em>Maintenance</em> and protection — Data undergoes degradation after some time, making it unreliable. This means there must be controls in place to maintain data quality.</li>
+<li><em>Governance</em> — Tracking and reporting on data quality is crucial because it enables a better understanding of data integrity. The processes and tools used to produce this information should be highly usable and automate functions where possible.</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/07/22/nodejs-error-handling-guide/#more" rel="contents">
+              <a class="btn" href="/2022/07/18/how-to-do-data-migration/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -391,7 +477,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2021/05/20/getting-started-with-fastapi/">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -405,7 +491,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/05/20/getting-started-with-fastapi/" class="post-title-link" itemprop="url">Getting Started with FastAPI for High-Performance APIs</a>
+            <a href="/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/" class="post-title-link" itemprop="url">How to Configure VLANs and DHCP using dnsmasq and veth pairs in Linux</a>
         </h2>
 
         <div class="post-meta">
@@ -415,14 +501,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-05-20 11:30:00" itemprop="dateCreated datePublished" datetime="2021-05-20T11:30:00+00:00">2021-05-20</time>
+              <time title="Created: 2022-07-10 15:07:06" itemprop="dateCreated datePublished" datetime="2022-07-10T15:07:06+00:00">2022-07-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
               </span>
 
           
@@ -436,10 +522,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>When it comes to building APIs in Python, frameworks like Flask and Django have long been the go-to choices. However, a newer framework has rapidly gained popularity for its incredible performance and developer-friendly features: FastAPI. Built on top of Starlette and Pydantic, FastAPI makes it easy to create modern, fast, and well-documented APIs.</p>
+          <h1 id="Configuring-VLANs-and-DHCP-for-User-Groups"><a href="#Configuring-VLANs-and-DHCP-for-User-Groups" class="headerlink" title="Configuring VLANs and DHCP for User Groups"></a>Configuring VLANs and DHCP for User Groups</h1><p>In a network environment, it is sometimes necessary to segment different user groups to improve security and performance. VLANs (Virtual Local Area Networks) provide a way to do this by dividing a physical network into multiple logical networks. This allows different user groups to be isolated from each other and to have their own set of configurations, such as DHCP (Dynamic Host Configuration Protocol) settings.</p>
+<p>In this tutorial, we will go through the steps of configuring VLANs and DHCP for different user groups.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Before we begin, we assume that you have the following:</p>
+<ul>
+<li>A Linux machine with a network interface named tap_home that is connected to a physical network</li>
+<li>Root access to the Linux machine</li>
+<li>Basic knowledge of networking concepts, such as IP addresses and subnets</li>
+</ul>
+<p><img src="/images/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux.png" alt="network_topology-overview"></p>
+<h2 id="Creating-VLANs"><a href="#Creating-VLANs" class="headerlink" title="Creating VLANs"></a>Creating VLANs</h2><p>The first step is to create VLANs for each user group. We will create two VLANs, one for each user group, with IDs 100 and 200.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip link add link tap_home name tap_home.100 type vlan id 100</span><br><span class="line">ip link add link tap_home name tap_home.200 type vlan id 200</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/05/20/getting-started-with-fastapi/#more" rel="contents">
+              <a class="btn" href="/2022/07/10/How_to_Configure_VLANs_and_DHCP_using_dnsmasq_and_veth_pairs_in_Linux/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -463,7 +559,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2021/01/25/mastering-python-virtual-environments/">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/03/25/from-rest-to-grpc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -477,7 +573,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/25/mastering-python-virtual-environments/" class="post-title-link" itemprop="url">Mastering Python Virtual Environments: From venv to pip-tools</a>
+            <a href="/2022/03/25/from-rest-to-grpc/" class="post-title-link" itemprop="url">From REST to gRPC: A Guide to Modern API Communication</a>
         </h2>
 
         <div class="post-meta">
@@ -487,14 +583,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-01-25 10:00:00" itemprop="dateCreated datePublished" datetime="2021-01-25T10:00:00+00:00">2021-01-25</time>
+              <time title="Created: 2022-03-25 10:00:00" itemprop="dateCreated datePublished" datetime="2022-03-25T10:00:00+00:00">2022-03-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
               </span>
 
           
@@ -508,10 +604,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>In the world of Python development, managing dependencies and project-specific environments is a foundational skill. It ensures that your projects are isolated, reproducible, and free from conflicts. For years, the standard has been <code>venv</code> combined with a <code>requirements.txt</code> file. In this post, we’ll revisit this classic approach and then explore how <code>pip-tools</code> can significantly improve the workflow.</p>
+          <p>For years, REST has been the dominant architectural style for building APIs, using the familiar verbs of HTTP and the flexibility of JSON. However, as systems evolve into complex networks of microservices, the need for more performant and strongly-typed communication has grown. Enter gRPC, a modern RPC (Remote Procedure Call) framework developed by Google that is rapidly gaining traction in the world of backend development.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/01/25/mastering-python-virtual-environments/#more" rel="contents">
+              <a class="btn" href="/2022/03/25/from-rest-to-grpc/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -535,7 +631,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2020/02/08/gpg-unusable-public-key/">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/03/08/develop-apisix-plugin-via-go/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -549,7 +645,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/08/gpg-unusable-public-key/" class="post-title-link" itemprop="url">gpg unusable key</a>
+            <a href="/2022/03/08/develop-apisix-plugin-via-go/" class="post-title-link" itemprop="url">Develop APISIX plugin via Golang</a>
         </h2>
 
         <div class="post-meta">
@@ -559,14 +655,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-02-08 08:18:15" itemprop="dateCreated datePublished" datetime="2020-02-08T08:18:15+00:00">2020-02-08</time>
+              <time title="Created: 2022-03-08 08:18:15" itemprop="dateCreated datePublished" datetime="2022-03-08T08:18:15+00:00">2022-03-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
               </span>
 
           
@@ -580,14 +676,165 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="fix-gpg-unusable-key"><a href="#fix-gpg-unusable-key" class="headerlink" title="fix gpg unusable key"></a>fix gpg unusable key</h1><p>when we import gpg keys from backup, and try to use it for decript&#x2F;encript, it will tell that the key is not usable,<br>we need to trust the keys first</p>
-<p>use <code>gpg --list-keys</code> to list all keys </p>
-<p>the output would like this </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pub   2048R/B660885G 2013-05-16 [expires: 2030-12-31]</span><br><span class="line">uid       [] SAP Admin &lt;xxx@xx.com&gt;</span><br></pre></td></tr></table></figure>
+          <h1 id="Develop-APISIX-plugin-via-Golang"><a href="#Develop-APISIX-plugin-via-Golang" class="headerlink" title="Develop APISIX plugin via Golang"></a>Develop APISIX plugin via Golang</h1><p>APISIX allows users to extend functions through plugins, Although the Apache APISIX kernel code is written in Lua by the plugin, Apache APISIX supports the development of plugins in multiple languages, such as Go and Java. This article will explain in detail how to use plugins to develop Apache APISIX.<br>We will write an HTTP base auth plugin in Golang</p>
+<h2 id="write-the-plugin"><a href="#write-the-plugin" class="headerlink" title="write the plugin"></a>write the plugin</h2><h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><ul>
+<li>Go (&gt;&#x3D; 1.15)</li>
+<li>apisix-go-plugin-runner</li>
+</ul>
+<p>Let’s look at the Plugin interface, To write a custom plugin, we need to implement the plugin’s interface  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">type Plugin interface &#123;</span><br><span class="line"> // Name returns the plguin name</span><br><span class="line"> Name() string</span><br><span class="line"></span><br><span class="line"> // ParseConf is the method to parse the given plugin configuration. When the</span><br><span class="line"> // configuration can&#x27;t be parsed, it will be skipped.</span><br><span class="line"> ParseConf(in []byte) (conf interface&#123;&#125;, err error)</span><br><span class="line"></span><br><span class="line"> // Filter is the method to handle request.</span><br><span class="line"> // It is like the `http.ServeHTTP`, plus the ctx and the configuration created by</span><br><span class="line"> // ParseConf.</span><br><span class="line"> //</span><br><span class="line"> // When the `w` is written, the execution of the plugin chain will be stopped.</span><br><span class="line"> // We don&#x27;t use onion model like Gin/Caddy because we don&#x27;t serve the whole request lifecycle</span><br><span class="line"> // inside the runner. The plugin is only a filter running at one stage.</span><br><span class="line"> Filter(conf interface&#123;&#125;, w http.ResponseWriter, r pkgHTTP.Request)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/08/develop-apisix-plugin-via-go/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<p>we can get the keys id here <code>B660885G</code></p>
-<p>and then <code>gpg&gt;trust</code></p>
-<p>If you’re sure about the authenticity of your key, select the trust level 5.</p>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/02/18/exploring-structural-pattern-matching-python-3-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on Backend and AI development, work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/exploring-structural-pattern-matching-python-3-10/" class="post-title-link" itemprop="url">Exploring Structural Pattern Matching in Python 3.10</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-18 09:00:00" itemprop="dateCreated datePublished" datetime="2022-02-18T09:00:00+00:00">2022-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Python 3.10 introduced a host of new features, but perhaps the most talked-about is Structural Pattern Matching. This feature, introduced in PEP 634, adds a <code>match</code> statement that behaves like a <code>switch</code> statement found in other languages, but with much more power and flexibility. It allows you to match variables against a variety of patterns, making complex conditional logic more readable and less error-prone.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/18/exploring-structural-pattern-matching-python-3-10/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Ezio Ruan">
+      <meta itemprop="description" content="Focus on Backend and AI development, work remotelly. Happy coding, happy living!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ezio Ruan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/08/resize-disk-on-ubuntu-oracle-cloud/" class="post-title-link" itemprop="url">resize disk sise for ubuntu instance in Oracle Cloud</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-08 08:18:15" itemprop="dateCreated datePublished" datetime="2022-02-08T08:18:15+00:00">2022-02-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>oracle has tools to increase disk sise for Oracle Image, but not ubuntu, we need to do it manualy</p>
+<p>The script internally calls growpart from cloud-guest-utils and resize2fs. So if you are not using LVM etc, to grow main ext4 partition of a boot volume in Ubuntu, simply run:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo growpart /dev/sda 1</span><br><span class="line">sudo resize2fs -z ./sda1.e2undo /dev/sda1</span><br></pre></td></tr></table></figure>
+
+<p>Since Oracle puts the boot partition after main, to be safe you can also install efibootmgr and check </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">efibootmgr -v </span><br></pre></td></tr></table></figure>
+<p>output. If yours also looks like</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Boot0002* UEFI ORACLE BlockVolume       PciRoot(0x0)/Pci(0x12,0x7)/Pci(0x0,0x0)/SCSI(0,1)N.....YM....R,Y.</span><br></pre></td></tr></table></figure>
+<p>then it means it uses SCSI disk&#x2F;partition number to locate boot partition and it should be safe to reboot now.</p>
 
       
     </div>
@@ -607,7 +854,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2016/06/17/setup-sftp-account-and-two-ways-login/">
+    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2021/12/15/async-await-nodejs-vs-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -621,7 +868,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/06/17/setup-sftp-account-and-two-ways-login/" class="post-title-link" itemprop="url">setup sftp account and two differences authentication logins</a>
+            <a href="/2021/12/15/async-await-nodejs-vs-python/" class="post-title-link" itemprop="url">Async/Await: A Tale of Two Runtimes (Node.js vs. Python)</a>
         </h2>
 
         <div class="post-meta">
@@ -631,14 +878,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-06-17 15:18:15" itemprop="dateCreated datePublished" datetime="2016-06-17T15:18:15+00:00">2016-06-17</time>
+              <time title="Created: 2021-12-15 11:00:00" itemprop="dateCreated datePublished" datetime="2021-12-15T11:00:00+00:00">2021-12-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
+                <time title="Modified: 2025-07-12 04:25:15" itemprop="dateModified" datetime="2025-07-12T04:25:15+00:00">2025-07-12</time>
               </span>
 
           
@@ -652,174 +899,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="sftp-is-a-way-to-use-ftp-on-a-linux-server-it-use-the-ssh-account-to-connect-the-server-we-can-setup-the-sftp-account-and-provide-differences-authentication"><a href="#sftp-is-a-way-to-use-ftp-on-a-linux-server-it-use-the-ssh-account-to-connect-the-server-we-can-setup-the-sftp-account-and-provide-differences-authentication" class="headerlink" title="sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authentication"></a>sftp is a way to use ftp on a linux server. it use the ssh account to connect the server, we can setup the sftp account and provide differences authentication</h1><h2 id="create-sftp-account-without-shell-permission"><a href="#create-sftp-account-without-shell-permission" class="headerlink" title="create sftp account without shell permission"></a>create sftp account without shell permission</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser --shell /bin/false sftpuser</span><br></pre></td></tr></table></figure>
-
-<p>then set the password for the user</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd sftpuser</span><br></pre></td></tr></table></figure>
-
-<h2 id="create-sftp-directory-for-the-user-and-give-the-permission"><a href="#create-sftp-directory-for-the-user-and-give-the-permission" class="headerlink" title="create sftp directory for the user, and give the permission"></a>create sftp directory for the user, and give the permission</h2><p>&#x2F;var&#x2F;sftp&#x2F;files here</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /var/sftp/files</span><br><span class="line">sudo chown sftpuser:sftpuser /var/sftp/files</span><br><span class="line"></span><br><span class="line">sudo chown root:root /var/sftp</span><br><span class="line">sudo chmod 755 /var/sftp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="create-public-key"><a href="#create-public-key" class="headerlink" title="create public key"></a>create public key</h2><p>we need to create the files in the user’s home directory, and generate the authentication keys</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/sftpuser/.ssh</span><br></pre></td></tr></table></figure>
-
-<p>generate keys by <code>ssh-keygen -t rsa</code> and point the file location  to <code>/home/sftpuser/.ssh/id_rsa</code></p>
-<p>set authorized keys and permission</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">touch authorized_keys</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br><span class="line">cd ..</span><br><span class="line">chmod 700 .ssh</span><br><span class="line">chmod 600 .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-
-<p>save the generate private key to your compucter and give 600 permission</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /home/sftp/.ssh/id_rsa &gt; sftp.pem</span><br><span class="line">chmod 600 sftp.pem</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="update-sftp-user-config-to-enable-password-and-public-key-authentication"><a href="#update-sftp-user-config-to-enable-password-and-public-key-authentication" class="headerlink" title="update sftp user config to enable password and public key authentication"></a>update sftp user config to enable password and public key authentication</h2><p>edit file at &#x2F;etc&#x2F;ssh&#x2F;sshd_config, append below lines</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Match User sftpuser</span><br><span class="line">	ForceCommand internal-sftp</span><br><span class="line">	PasswordAuthentication yes</span><br><span class="line">	ChrootDirectory /var/sftp</span><br><span class="line">	PermitTunnel no</span><br><span class="line">	AllowAgentForwarding no</span><br><span class="line">	AllowTcpForwarding no</span><br><span class="line">	X11Forwarding no</span><br><span class="line">	RSAAuthentication yes</span><br><span class="line">	PubkeyAuthentication yes</span><br><span class="line">	AuthorizedKeysFile /home/sftpuser/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-
-
-<p>set PasswordAuthentication to yes to enable password authentication,<br>set PubkeyAuthentication to yes to enable public key authentication,</p>
-<p>and then restart sshd services<br><code>sudo service sshd restart</code></p>
-<h2 id="test-sftp-connection-by-command-line"><a href="#test-sftp-connection-by-command-line" class="headerlink" title="test sftp connection by command line"></a>test sftp connection by command line</h2><p>password authentication</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp  sftpuser@&lt;server_host&gt;</span><br></pre></td></tr></table></figure>
-
-
-<p>public key  authentication</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp -i sftp.pem sftpuser@&lt;server_host&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2016/03/04/a-simple-comic-script/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ezio Ruan">
-      <meta itemprop="description" content="Focus on Backend and AI development, work remotelly. Happy coding, happy living!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ezio Ruan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/04/a-simple-comic-script/" class="post-title-link" itemprop="url">一个简单的漫画下载脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-03-04 15:07:06" itemprop="dateCreated datePublished" datetime="2016-03-04T15:07:06+00:00">2016-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近看暗杀教室实在是太麻烦了。手机app不更新 贴吧只有最新一话 网页在线看广告多得要死</p>
-<p>简单的写了下 只针对暗杀教室这个漫画 不过其他漫画理论上也是可以的<br>地址在 <a target="_blank" rel="noopener" href="https://github.com/ezioruan/Ansatsu-Kyoushitsu">https://github.com/ezioruan/Ansatsu-Kyoushitsu</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ezioruan.github.io/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Ezio Ruan">
-      <meta itemprop="description" content="Focus on Backend and AI development, work remotelly. Happy coding, happy living!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ezio Ruan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/01/21/fix_vim_hangs_due_to_xcode_upgrade/" class="post-title-link" itemprop="url">解决xcode升级vim插件无法使用问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-01-21 19:24:00" itemprop="dateCreated datePublished" datetime="2016-01-21T19:24:00+00:00">2016-01-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-07-07 08:42:08" itemprop="dateModified" datetime="2025-07-07T08:42:08+00:00">2025-07-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>xcode经常升级，升级以后以前的插件都不能用了 其实是因为xcode升级以后产品id变掉了<br>这个确实坑爹 都没有做自动适配的</p>
-<p>一行代码搞定冲突</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I&#123;&#125; defaults write &#123;&#125; DVTPlugInCompatibilityUUIDs -array-add `defaults <span class="built_in">read</span> /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+          <p>Both Node.js and Python have embraced the <code>async/await</code> syntax to simplify asynchronous programming. While the keywords are the same and the high-level concept is similar—making asynchronous code look synchronous—the underlying models and ecosystems have key differences. Understanding these distinctions is crucial for developers working in both environments.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/15/async-await-nodejs-vs-python/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -837,7 +925,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -905,12 +993,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
